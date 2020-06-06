@@ -61,7 +61,7 @@ useEffect(()=>{
     <div>
       
    <ReactMapGL {...viewport} mapboxApiAccessToken={REACT_APP_MAPBOX_TOKEN} 
-   mapStyle="mapbox://styles/melkilic/ckayvcdun04zu1ipix1j6em6f"  
+   mapStyle="mapbox://styles/melkilic/ckb1candc02r41ipe62zxyus3"  
    onViewportChange={viewport => {
           setViewport(viewport);
         }}>
@@ -95,13 +95,14 @@ useEffect(()=>{
      <Popup
         latitude= {selectedState.lat}
         longitude={selectedState.long} >
-          
-        <div onClick={()=> history.push('/show')}>
-         <h2>{viewState.state}</h2>
+
+        <div >
+         <h2 style={{"color": "dark-blue"}} onClick={()=> history.push('/show')}>{viewState.state}</h2>
           {viewState.positive !== null ?  <h4>Positive Cases: {viewState.positive}</h4> : <h4>Positive Cases: No current info</h4>}
           {viewState.negative !==null ?  <h4>Negative Cases: {viewState.negative}</h4> : <h4> Negative Cases: No current info</h4> }
           {viewState.death !== null ?  <h4>Death:{viewState.death}</h4> : <h4> Death: No current info</h4>}
          {viewState.recovered!==null ? <h4>Recovered:{viewState.recovered}</h4> : <h4> Recovered: No current info</h4> }
+   {viewState.lastUpdateEt !== null ? <h4> Last Update: {viewState.lastUpdateEt}</h4> : <h4> Last Update: No current info </h4>}
           
         </div>
         
