@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useDispatch, useSelector} from 'react-redux'
 // import SignUp from './SignUp'
 export function Login(props) {
   let [user, changeUser] = useState({
@@ -6,6 +7,7 @@ export function Login(props) {
     password: "",
   });
   
+  let dispatch= useDispatch()
   async function handleSubmit(e) {
     e.preventDefault();
     let response = await fetch("http://localhost:3000/login", {
@@ -21,7 +23,13 @@ export function Login(props) {
     });
     let { success, id } = await response.json();
     if (success) {
-      props.history.push("/home", id);
+      console.log(id)
+      dispatch({
+        type: "USER",
+        user: id
+      })
+
+      props.history.push("/", id);
     } else {
       alert("incorrect");
     }

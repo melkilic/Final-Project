@@ -7,6 +7,8 @@ import Navbar from './Navbar'
 import Signup from './Signup'
 import {Login} from './Login'
 import UsDaily from './UsDaily';
+import UsCurrent from './UsCurrent'
+import About from './About'
 
 function App() {
   
@@ -15,11 +17,13 @@ function App() {
     <div>
       <Navbar/>
       <BrowserRouter>
+      <Route exact path={"/current"} component={UsCurrent}/>
       <Route exact path={"/"} component={ReactMap}/>
       <Route exact path={"/show"} component={ShowState}/>
       <Route exact path={"/signup"} component={Signup}/>
       <Route exact path={"/login"} component={Login}/>
       <Route exact path={"/daily"} component={UsDaily}/>
+      <Route exact path={"/about"} component={About}/>
       </BrowserRouter>
     </div>
   );

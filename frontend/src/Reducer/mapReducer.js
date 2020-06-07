@@ -9,7 +9,7 @@ const initialState={
   export  const mapReducer = (state=initialState, action)=>{
   switch(action.type){
    case 'CHANGE_LOCATION' :
-       console.log(action.currentLocation)
+      //  console.log(action.currentLocation)
      return {
          state: action.currentLocation
      }

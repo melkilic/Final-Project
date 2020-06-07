@@ -6,6 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { e0f2f1, blue } from '@material-ui/core/colors';
 import { blueGrey} from '@material-ui/core/colors';
+import {useDispatch, useSelector} from 'react-redux'
 
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
@@ -30,26 +31,37 @@ function handleClick(event) {
 }
 
 export default function Navbar() {
+  let user = useSelector(state=>state.userState.state)
+  console.log(user)
   return (
+   
     <Breadcrumbs aria-label="breadcrumb">
       <StyledBreadcrumb
         component="a"
         href="/"
         label="Home"
         icon={<HomeIcon fontSize="small" />}
-        onClick={handleClick}
+       
       />
-      <StyledBreadcrumb component="a" href="#" label="US Daily" onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="US Current" onClick={handleClick} />
+      <StyledBreadcrumb component="a" href="/daily" label="US Daily" />
+      <StyledBreadcrumb component="a" href="/current" label="US Current"  />
+      
+      {user !== undefined || null ? 
+       <StyledBreadcrumb component="a" href="#" label="Log out" onClick={handleClick} />
 
+    :
+    <div>
+    <StyledBreadcrumb component="a" href="/signup" label="Sign Up" />
       <StyledBreadcrumb
+        component="a"
         label="Login"
         deleteIcon={<ExpandMoreIcon />}
-        onClick={handleClick}
-        onDelete={handleClick}
+        href= "/login"
       />
-
-<StyledBreadcrumb component="a" href="#" label="About" onClick={handleClick} />
+      
+      </div>
+      }
+<StyledBreadcrumb component="a" href="/about" label="About"  />
     </Breadcrumbs>
   );
 }

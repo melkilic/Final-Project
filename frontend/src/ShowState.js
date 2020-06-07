@@ -51,19 +51,8 @@ import {indigo} from '@material-ui/core/colors'
 
 
 
-  // let getUsCurrent=()=>{
-  //   fetch('http://covidtracking.com/api/us')
-  // .then(response =>response.json())
-  // // .then(response=> {console.log("US Current:", response)})
-  // }
+ 
 
-// getUsCurrent()
-
-//   let getUsDaily=()=>{
-//     fetch('https://covidtracking.com/api/us/daily')
-//   .then(response =>response.json())
-//   // .then(response=> {console.log("US Daily:", response)})
-//   }
 
 
 

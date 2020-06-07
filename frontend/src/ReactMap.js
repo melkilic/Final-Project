@@ -9,11 +9,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 import {handleStateChange} from './Action/MapAction'
 
+
+
 function ReactMap() {
   
     let dispatch=useDispatch()
     let viewState= useSelector(state=> state.mapState.state)
-    console.log(viewState)
+    // console.log(viewState)
     let history= useHistory()
 
   const [viewport, setViewport]=useState({
@@ -82,7 +84,7 @@ useEffect(()=>{
               e.preventDefault();
               setSelectedState(state)
             }}>
-           <Icon style={{ "color": "#e0f2f1"}}> <span class="material-icons">
+           <Icon style={{ "color": "#e0f2f1"}}> <span className="material-icons">
            maps_ugc
 </span></Icon>
 </button>
@@ -94,9 +96,12 @@ useEffect(()=>{
    {selectedState ? (
      <Popup
         latitude= {selectedState.lat}
-        longitude={selectedState.long} >
+        longitude={selectedState.long} 
+        onClose={() => {
+          setSelectedState(null);
+        }}>
 
-        <div >
+        <div  >
          <h2 style={{"color": "dark-blue"}} onClick={()=> history.push('/show')}>{viewState.state}</h2>
           {viewState.positive !== null ?  <h4>Positive Cases: {viewState.positive}</h4> : <h4>Positive Cases: No current info</h4>}
           {viewState.negative !==null ?  <h4>Negative Cases: {viewState.negative}</h4> : <h4> Negative Cases: No current info</h4> }
@@ -110,6 +115,8 @@ useEffect(()=>{
    ): null
    
    }
+  
+
    </ReactMapGL> 
    </div>
   );

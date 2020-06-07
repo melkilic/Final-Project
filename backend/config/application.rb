@@ -22,7 +22,7 @@ Bundler.require(*Rails.groups)
 module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.session_store :cookie_store, key: '_session', same_site: :strict
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

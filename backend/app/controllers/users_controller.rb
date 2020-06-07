@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+
     class UsersController < ApplicationController
 
         # before_action :define_current_user
@@ -39,4 +39,3 @@ class UsersController < ApplicationController
         end
     
     end
-end
