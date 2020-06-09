@@ -12,8 +12,12 @@ import About from './About'
 import Profile from './Profile'
 import './App.css'
 
-function App() {
+
+class App extends React.Component {
   
+
+
+render(){
   return (
     
     <div>
@@ -28,8 +32,10 @@ function App() {
       <Route exact path={"/about"} component={About}/>
       <Route exact path={"/profile"} component={Profile}/>
       </BrowserRouter>
+      {/* <UsDaily chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/> */}
     </div>
   );
+}
 }
 
 export default App;
