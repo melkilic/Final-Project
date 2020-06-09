@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { Bar, Line, Pie } from "react-chartjs-2";
-const axios = require("axios");
+
 export default function UsDaily() {
   const [chartData, setChartData] = useState({});
   const [death, setDeath] = useState([]);
@@ -12,7 +12,7 @@ export default function UsDaily() {
   const chart = () => {
     let deathArr = [];
     let dateArr = [];
-
+    let colorArr=["rgba(128,0,0)", "rgba(75, 192, 192, 0.6)", "rgba(47,79,79)"];
     fetch("https:covidtracking.com/api/us/daily")
       .then((res) => res.json())
       .then((r) => {
@@ -22,6 +22,7 @@ export default function UsDaily() {
             element.death === null ? (element.death = 0) : element.death;
           deathArr.push(deathCount);
           dateArr.push(element.date);
+          colorArr.push(dateArr)
         });
         dateArr.reverse()
         deathArr.reverse()
@@ -35,7 +36,7 @@ export default function UsDaily() {
               {
                 label: "death",
                 data: deathArr,
-                backgroundColor: ["rgba(75, 192, 192, 0.6)"]
+                backgroundColor: colorArr
               }
             ],
           });
@@ -54,10 +55,10 @@ export default function UsDaily() {
   }, []);
 
   return (
-    <div class="row" className="chart" >
+    <div className="chart" >
         
       <Bar
-        style= "display: block; height: 1000px; width: 1113px;"
+        style= "display: block; height: 200px; width: 1113px;"
         data={chartData}
         options={{
           responsive: true,
@@ -96,6 +97,7 @@ export default function UsDaily() {
       />
 
       <Line
+       style= "display: block; height: 300px; width: 1780px;"
         data={chartData}
         options={{
           responsive: true,
@@ -134,6 +136,7 @@ export default function UsDaily() {
       />
 
       <Pie
+       style= "display: block; height: 300px; width: 1113px;"
         data={chartData}
         options={{
           responsive: true,

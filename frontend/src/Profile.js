@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useSelector } from 'react';
 
 export default function Profile(){
+    let userProfile= useSelector(user=> user.userState.state)
     return(
-        <div>
-            another hi page
+        <div class="container">
+            <div class="row">
+               <span>{userProfile.username}</span>
+            </div>
         </div>
     )
 }
