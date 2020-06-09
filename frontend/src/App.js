@@ -9,6 +9,8 @@ import {Login} from './Login'
 import UsDaily from './UsDaily';
 import UsCurrent from './UsCurrent'
 import About from './About'
+import Profile from './Profile'
+import './App.css'
 
 function App() {
   
@@ -24,6 +26,7 @@ function App() {
       <Route exact path={"/login"} component={Login}/>
       <Route exact path={"/daily"} component={UsDaily}/>
       <Route exact path={"/about"} component={About}/>
+      <Route exact path={"/profile"} component={Profile}/>
       </BrowserRouter>
     </div>
   );

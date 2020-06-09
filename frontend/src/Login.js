@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-// import SignUp from './SignUp'
+import { Alert, AlertTitle } from '@material-ui/lab';
+import { message, Button, Space } from 'antd';
+
+
 export function Login(props) {
   let [user, changeUser] = useState({
     username: "",
     password: "",
   });
-  
+ 
+
   let dispatch= useDispatch()
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,23 +27,28 @@ export function Login(props) {
     });
     let { success, id } = await response.json();
     if (success) {
-      console.log(id)
+      
+      message.success('You are logged in.')
+      // console.log(id)
       dispatch({
         type: "USER",
         user: id
       })
-
+      
       props.history.push("/", id);
+      
     } else {
-      alert("incorrect");
+     message.error('The username or the password is incorrect.')
     }
   }
 
+  
+  
   return (
     <div >
-      <form onSubmit={handleSubmit} className="auth-wrapper auth-inner row-">
+      <form onSubmit={handleSubmit}>
         <h1>Login</h1>
-        <div class="form-group">
+        <div>
           <label for="exampleInputEmail1">Username </label>
           <input
            
@@ -49,8 +58,8 @@ export function Login(props) {
     
           />
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password </label>
+        <div>
+          <label>Password </label>
           <input
             type="password"
             value={user.password}
@@ -58,7 +67,10 @@ export function Login(props) {
            
           />
         </div>
-        <button input="submit" class="btn btn-primary">
+       
+        <button input="submit" 
+      
+        >
           Log in
         </button>
       </form>
@@ -66,3 +78,4 @@ export function Login(props) {
     </div>
   );
 }
+

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import { message, Button, Space } from 'antd';
+
 export default function SignUp(props){
     let [new_user, changeNewUser] = useState({
         new_username: "",
@@ -22,13 +24,14 @@ export default function SignUp(props){
 
         let { success, id } = await response.json();
         if (success) {
+          message.success('You successfully signed up.')
           dispatch({
             type: 'USER',
             user: id
           })
           props.history.push("/", id);
         } else {
-          alert("You can't use this username");
+          message.error("You can't use this username");
         }
       }
 
@@ -87,7 +90,7 @@ export default function SignUp(props){
             />
           </div>
           <button input="submit" class="btn btn-primary">
-            Register
+            Sign Up
           </button>
         </form>
       </div>

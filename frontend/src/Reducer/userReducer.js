@@ -1,8 +1,6 @@
 
 const initialState={
-//    user: {
        user: undefined
-//    }
 }
 
 export const userReducer=(state=initialState, action)=>{
@@ -14,7 +12,11 @@ export const userReducer=(state=initialState, action)=>{
                 //   ...state, 
                   state: action.user
             }
-            break;
+            case 'LOG_OUT': 
+                return{
+              state: null
+                }
+            
     }
     return state;
 }

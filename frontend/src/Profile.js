@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default function About(){
+export default function Profile(){
     return(
         <div>
-       hi
+            another hi page
         </div>
     )
 }
