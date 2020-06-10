@@ -8,7 +8,7 @@ import Icon from '@material-ui/core/Icon';
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 import {handleStateChange} from './Action/MapAction'
-
+import Navbar from './Navbar'
 
 
 function ReactMap() {
@@ -61,7 +61,7 @@ useEffect(()=>{
 
   return (
     <div>
-      
+        <Navbar/>
    <ReactMapGL {...viewport} mapboxApiAccessToken={REACT_APP_MAPBOX_TOKEN} 
    mapStyle="mapbox://styles/melkilic/ckb1candc02r41ipe62zxyus3"  
    onViewportChange={viewport => {

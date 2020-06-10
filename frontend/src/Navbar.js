@@ -42,7 +42,7 @@ export default function Navbar() {
     <Breadcrumbs aria-label="breadcrumb">
       <StyledBreadcrumb
         component="a"
-        href="/"
+        href="/home"
         label="Home"
         icon={<HomeRoundedIcon fontSize="small" />}
        

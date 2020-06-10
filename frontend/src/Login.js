@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { Alert, AlertTitle } from '@material-ui/lab';
 import { message, Button, Space } from 'antd';
 
 
@@ -35,7 +34,7 @@ export function Login(props) {
         user: id
       })
       
-      props.history.push("/", id);
+      props.history.push("/home", id);
       
     } else {
      message.error('The username or the password is incorrect.')
@@ -45,36 +44,42 @@ export function Login(props) {
   
   
   return (
-    <div >
+    <div className="base-container" ref={props.containerRef} >
       <form onSubmit={handleSubmit}
-       className="auth-wrapper auth-inner row-cols-1 "
        >
-        <h1>Login</h1>
-        <div>
-          <label for="exampleInputEmail1">Username </label>
+         <div className="header">Login</div>
+         <div className="content">
+      {/* <div className="image">
+        <img src="https://www.bynarycodes.com/wp-content/uploads/2018/07/word-image-1024x576.jpg" />
+      </div> */}
+      <div className="form">
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
           <input
            
-            type="text"
+           type="text" name="username" placeholder="username"
             value={user.username}
             onChange={(e) => changeUser({ ...user, username: e.target.value })}
     
           />
         </div>
-        <div>
-          <label>Password </label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            name="password" placeholder="password"
             value={user.password}
             onChange={(e) => changeUser({ ...user, password: e.target.value })}
            
           />
         </div>
-       
-        <button input="submit" 
-      
-        >
-          Log in
-        </button>
+       </div>
+       </div>
+        <div className="footer">
+      <button type="button" className="btn"  input="submit">
+        Login
+      </button>
+    </div>
       </form>
      
     </div>

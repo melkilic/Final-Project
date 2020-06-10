@@ -58,7 +58,7 @@ export default function UsDaily() {
     <div className="chart" >
         
       <Bar
-        style= "display: block; height: 200px; width: 1113px;"
+        style= "display: block; height: 300px; width: 1113px;"
         data={chartData}
         options={{
           responsive: true,
@@ -97,7 +97,7 @@ export default function UsDaily() {
       />
 
       <Line
-       style= "display: block; height: 300px; width: 1780px;"
+       style= "display: block; height: 300px; width: 1113px;"
         data={chartData}
         options={{
           responsive: true,
