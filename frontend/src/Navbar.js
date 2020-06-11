@@ -49,28 +49,25 @@ export default function Navbar() {
       />
       <StyledBreadcrumb component="a" href="/daily" label="US Daily" />
       <StyledBreadcrumb component="a" href="/current" label="US Current"  />
-      
-      {user !== undefined || null ? 
-      <div>
-      <StyledBreadcrumb component="a" href="/profile" label="Profile"  />
-      
-       <StyledBreadcrumb component="a" label="Log out" onClick={()=> dispatch({type: "LOG_OUT"})} />
-       </div>
-           :
+      <StyledBreadcrumb component="a" href="/counties" label="Counties"  />
+      {/* {user !== undefined || null ? */}
+
+      <StyledBreadcrumb component="a" href="/about" label="About"  />
+       <StyledBreadcrumb component="a" label="Log out" onClick={()=> dispatch({type: "LOG_OUT"})} href="/"/>
+   
+           {/* :  */}
     <div>
-    <StyledBreadcrumb component="a" href="/signup" label="Sign Up" />
+{/* 
       <StyledBreadcrumb
-        component="a"
-        label="Login"
-        deleteIcon={<ExpandMoreIcon />}
-        href= "/login"
-        // onClick={<Alert severity="success">This is a success alert — check it out!</Alert>}
+       
+        href= "/"
+     
       />
-      
+       */}
       
       </div>
-      }
-<StyledBreadcrumb component="a" href="/about" label="About"  />
+      {/* } */}
+
     </Breadcrumbs>
   );
 }

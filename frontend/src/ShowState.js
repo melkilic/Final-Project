@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux'
+import Navbar from "./Navbar";
  export default function ShowState(){
 
  const [stateInfo, setStateInfo]= useState([])
@@ -20,8 +21,11 @@ import {useSelector} from 'react-redux'
 
      let showState= useSelector(state=> state.mapState.state)
      return(
+       
       
          <div>
+             <Navbar/>
+             <div>
           <h2>{ showState.state} </h2>
           <h3>Data Quality Grade:{showState.dataQualityGrade}</h3>
           <h3>Fips: {showState.fips}</h3>
@@ -34,7 +38,7 @@ import {useSelector} from 'react-redux'
           <h3>Total Test Results: {showState.totalTestResults}</h3>
           <h3>Total Test Results Increase: {showState.totalTestResultsIncrease}</h3>
           <h3>Last Update: {showState.lastUpdateEt}</h3>
-  
+          </div>
          </div>
          
      )

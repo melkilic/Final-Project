@@ -1,35 +1,3 @@
-// import React,  { useState, useEffect } from 'react';
-// import { AppBar, Toolbar, Typography, Grid} from "@material-ui/core"
-
-// 
-
-
-//     return(
-    
-//           <Grid container>
-//               <Grid item sm>
-//   {state.date}
-//   {state.dateChecked}
-//   {state.death}
-//   {state.deathIncrease}
-//   {state.hospitalized}
-//   {state.hospitalizedCurrently}
-//   {state.hospitalizedIncrease}
-//   {state.lastModified}
-//   {state.negative}
-//   {state.negativeIncrease}
-//   {state.positive}
-//   {state.positiveIncrease}
-//   {state.recovered}
-//   {state.states}
-//   {state.total}
-//   {state.totalTestResults}
-//   {state.totalTestResultsIncrease}
-//   </Grid>
-//   </Grid>
-   
-//     )
-// }
 
 import React,  { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -40,77 +8,85 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import Navbar from "./Navbar";
+import { Radar} from "react-chartjs-2";
+import Chart from 'chart.js'
 export default function UsCurrent(){
+  
         const [state, setState] = useState([])
-         useEffect(()=>{
+
+         const radar=()=>{
         fetch('http://covidtracking.com/api/us')
       .then(response =>response.json())
       .then(response=> { 
-    
-        console.log(response[0])
-         setState(response[0])
+         let hospitalized= response[0].hospitalized
+        // console.log(response[0])
+      
+        //  console.log(response[0].hospitalized)
+        setState({
+          labels: response[0].total,
+          datasets: [
+            {
+              label: "hospitalized",
+              data: hospitalized,
+              backgroundColor:"rgba(75, 192, 192, 0.6)"
+            }
+          ],
+        });
         })
-      }, [state])
+       
+      }
+     
     
-    
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+  
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+useEffect(()=>{
+radar();
+},[])
+const CHART= document.getElementById("lineChart")
+  Chart.defaults.scale.ticks.beginAtZero=true;
+  let barChart= new Chart(CHART,{
+    type:'radar',
+    data:{
+      labels:"hospitalized",
+      datasets:[
+        {
+        label: "hospitalized",
+        backgroundColor: 'rgba(00,255,00,0.1)',
+        borderColor: '#00FF00',
+        borderWidth: 2,
+        data: {state}
+        }
+      ]
     },
-  },
-}))(TableRow);
-
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
-
-
-  const classes = useStyles();
-
+    options: {
+      animation:{
+        animateScale:true
+      },
+      scale: {
+          angleLines: {
+              display: false
+          },
+          ticks: {
+              suggestedMin: 50,
+              suggestedMax: 100
+          }
+      }
+  }
+       
+  })
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow >
-            <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="right">Death</StyledTableCell>
-            <StyledTableCell align="right">Positive</StyledTableCell>
-            <StyledTableCell align="right">Negative</StyledTableCell>
-            <StyledTableCell align="right">Total</StyledTableCell>
-            <StyledTableCell align="right">deathIncrease</StyledTableCell>
-            <StyledTableCell align="right">hospitalized</StyledTableCell>
-            <StyledTableCell align="right">hospitalizedCurrently</StyledTableCell>
-            <StyledTableCell align="right">hospitalizedIncrease</StyledTableCell>
-            <StyledTableCell align="right">lastModified</StyledTableCell>
-            <StyledTableCell align="right">negativeIncrease</StyledTableCell>
-            <StyledTableCell align="right">recovered</StyledTableCell>
-            <StyledTableCell align="right">states</StyledTableCell>
-            <StyledTableCell align="right">totalTestResults</StyledTableCell>
-            <StyledTableCell align="right">totalTestResultsIncrease</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-         
-            <StyledTableRow>
-              <StyledTableCell component="th" scope="row">
-              {state.dateChecked}
-              </StyledTableCell>
-              <StyledTableCell align="right"> {state.death}</StyledTableCell>
+    <div className="chart" >
+      
+       <Navbar/>
+   
+      
+ 
+
+           <h1> {state.dateChecked}</h1>
+             
+           
+            {/* <StyledTableCell align="right"> {state.death}</StyledTableCell>
               <StyledTableCell align="right"> {state.positive}</StyledTableCell>
               <StyledTableCell align="right"> {state.negative}</StyledTableCell>
               <StyledTableCell align="right"> {state.total}</StyledTableCell>
@@ -121,13 +97,10 @@ const useStyles = makeStyles({
               <StyledTableCell align="right"> {state.lastModified}</StyledTableCell>
               <StyledTableCell align="right">  {state.negativeIncrease}</StyledTableCell>
               <StyledTableCell align="right">  {state.recovered}</StyledTableCell>
-              <StyledTableCell align="right">  {state.states}</StyledTableCell>
               <StyledTableCell align="right"> {state.totalTestResults}</StyledTableCell>
-              <StyledTableCell align="right">  {state.totalTestResultsIncrease}</StyledTableCell>
-            </StyledTableRow>
-        
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-          }
+              <StyledTableCell align="right">  {state.totalTestResultsIncrease}</StyledTableCell> 
+            
+       */}
+    </div>
+  )
+  }

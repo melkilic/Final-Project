@@ -29,7 +29,7 @@ export default function SignUp(props){
             type: 'USER',
             user: id
           })
-          props.history.push("/", id);
+          props.history.push("/home", id);
         } else {
           message.error("You can't use this username");
         }

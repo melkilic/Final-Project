@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { message, Button, Space } from 'antd';
 
-
+import {useHistory} from 'react-router'
 export function Login(props) {
   let [user, changeUser] = useState({
     username: "",
     password: "",
   });
  
-
+let history=useHistory()
   let dispatch= useDispatch()
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log("hi")
     let response = await fetch("http://localhost:3000/login", {
       credentials: "include",
       method: "POST",
@@ -34,7 +35,7 @@ export function Login(props) {
         user: id
       })
       
-      props.history.push("/home", id);
+      history.push("/home");
       
     } else {
      message.error('The username or the password is incorrect.')
@@ -45,7 +46,7 @@ export function Login(props) {
   
   return (
     <div className="base-container" ref={props.containerRef} >
-      <form onSubmit={handleSubmit}
+      <form onSubmit={(e)=>handleSubmit(e)}
        >
          <div className="header">Login</div>
          <div className="content">
@@ -67,8 +68,8 @@ export function Login(props) {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            name="password" placeholder="password"
             value={user.password}
+            name="password" placeholder="password"
             onChange={(e) => changeUser({ ...user, password: e.target.value })}
            
           />
@@ -76,7 +77,7 @@ export function Login(props) {
        </div>
        </div>
         <div className="footer">
-      <button type="button" className="btn"  input="submit">
+      <button type="submit" className="btn"  input="submit">
         Login
       </button>
     </div>
@@ -85,3 +86,48 @@ export function Login(props) {
     </div>
   );
 }
+
+
+// export default function PickOne(props){
+//   let [loginActive, setLoginActive]= useState(true)
+//   useEffect(()=>{
+//     props.rightSide.classList.add("right");
+//   })
+  
+  
+//   let changeState=()=> {
+//     const { isLogginActive } = loginActive;
+  
+//     if (isLogginActive) {
+//       props.rightSide.classList.remove("right");
+//       props.rightSide.classList.add("left");
+//     } else {
+//      props.rightSide.classList.remove("left");
+//      props.rightSide.classList.add("right");
+//     }
+//     setLoginActive((prevState) => ({
+//       isLogginActive: !prevState.isLogginActive,
+//     }));
+//   }
+  
+//   const { isLogginActive } = loginActive;
+//   const current = isLogginActive ? "Sign Up" : "Login";
+//   const currentActive = isLogginActive ? "Login" : "Sign Up";
+
+//   return(
+//     <div className="container" ref={(ref) => (props.container = ref)} >
+//        {isLogginActive && (
+//               <Login  ref={(ref) => (current = ref)} />
+//             )}
+//             {!isLogginActive && (
+//               <Signup ref={(ref) => (current = ref)} />
+//             )}
+//               <RightSide
+//             current={current}
+//             currentActive={currentActive}
+//             containerRef={(ref) => (props.rightSide = ref)}
+//             onClick={changeState}
+//           />
+//           </div>
+//   )
+// }
