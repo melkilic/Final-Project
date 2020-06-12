@@ -11,7 +11,8 @@ import PickOne  from "./Login";
 import UsDaily from "./UsDaily";
 import UsCurrent from "./UsCurrent";
 import About from "./About";
-import Counties from "./Counties"
+// import Hospitals from "./Hospitals"
+import Location from './Hospitals'
 import "./App.css";
 import "./App.scss";
 import './about.css'
@@ -32,6 +33,7 @@ class App extends React.Component {
           <Route exact path={"/home"} component={ReactMap} />
           <Route exact path={"/show"} component={ShowState} />
           <Route exact path={"/daily"} component={UsDaily} />
+          <Route exact path={"/hospitals"} component={Location} />
           <Route exact path={"/about"} component={About} />
           <Route exact path={"/"} component={Form}/>
         </BrowserRouter>

@@ -35,7 +35,7 @@ function handleClick(event) {
 export default function Navbar() {
   let user = useSelector(state=>state.userState.state)
    let dispatch=useDispatch()
-  console.log(user)
+  // console.log(user)
   return (
 
    
@@ -49,7 +49,7 @@ export default function Navbar() {
       />
       <StyledBreadcrumb component="a" href="/daily" label="US Daily" />
       <StyledBreadcrumb component="a" href="/current" label="US Current"  />
-      <StyledBreadcrumb component="a" href="/counties" label="Counties"  />
+      <StyledBreadcrumb component="a" href="/hospitals" label="Hospitals"  />
       {/* {user !== undefined || null ? */}
 
       <StyledBreadcrumb component="a" href="/about" label="About"  />

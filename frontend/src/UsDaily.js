@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import Navbar from "./Navbar";
+
+
 export default function UsDaily() {
   const [chartData, setChartData] = useState({});
   const [death, setDeath] = useState([]);
