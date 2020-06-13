@@ -1,36 +1,38 @@
 
 import React,  { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Navbar from "./Navbar";
-import { Radar} from "react-chartjs-2";
 import Chart from 'chart.js'
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Bar, Line, Pie, Doughnut} from "react-chartjs-2";
+
 export default function UsCurrent(){
   
         const [state, setState] = useState([])
 
-         const radar=()=>{
+         const getCurrent=()=>{
+           let hospitalizedArr=[]
+           let deathArr=[]
+           let total=[]
+           let labels=["hospitalized","death", "total", "positive", "recovered","totalTestResults"]
+           let colors=["#97c9a5","#bec997","#e0bfad","#e36868","#e4a8f0","#6e1239"]
+
         fetch('http://covidtracking.com/api/us')
       .then(response =>response.json())
       .then(response=> { 
-         let hospitalized= response[0].hospitalized
-        // console.log(response[0])
+        hospitalizedArr.push(response[0].hospitalized)
+        deathArr.push(response[0].death)
+        total.push(response[0].total)
+
+        console.log(response[0])
       
         //  console.log(response[0].hospitalized)
         setState({
-          labels: response[0].total,
+          labels: labels,
           datasets: [
             {
-              label: "hospitalized",
-              data: hospitalized,
-              backgroundColor:"rgba(75, 192, 192, 0.6)"
+              // label: labels,
+              data: hospitalizedArr,deathArr,
+              backgroundColor: colors
             }
           ],
         });
@@ -42,52 +44,22 @@ export default function UsCurrent(){
   
 
 useEffect(()=>{
-radar();
+getCurrent();
 },[])
-// const CHART= document.getElementById("lineChart")
-//   Chart.defaults.scale.ticks.beginAtZero=true;
-//   let barChart= new Chart(CHART,{
-//     type:'radar',
-//     data:{
-//       labels:"hospitalized",
-//       datasets:[
-//         {
-//         label: "hospitalized",
-//         backgroundColor: 'rgba(00,255,00,0.1)',
-//         borderColor: '#00FF00',
-//         borderWidth: 2,
-//         data: {state}
-//         }
-//       ]
-//     },
-//     options: {
-//       animation:{
-//         animateScale:true
-//       },
-//       scale: {
-//           angleLines: {
-//               display: false
-//           },
-//           ticks: {
-//               suggestedMin: 50,
-//               suggestedMax: 100
-//           }
-//       }
-//   }
-       
-//   })
+
   return (
     <div className="chart" >
       
        <Navbar/>
-       <div style={{display: 'block', height: '300px', width: '1600px'}}>
+       <div style={{display: 'block', height: '500px', width: '1600px'}}>
        <Pie
         data={state}
         options={{
+          cutoutPercentage: 30,
           responsive: true,
            maintainAspectRatio: false,
           title: { 
-              text: "Another one", 
+              text: "US Current COVID-19 Data", 
               display: true,
               fontSize: 25 
             },
@@ -119,26 +91,7 @@ radar();
         }}
       />  
       </div>
-      
- 
 
-           <h1> {state.dateChecked}</h1>
-             
-{/*            
-          <StyledTableCell align="right"> {state.death}</StyledTableCell>
-              <StyledTableCell align="right"> {state.positive}</StyledTableCell>
-              <StyledTableCell align="right"> {state.negative}</StyledTableCell>
-              <StyledTableCell align="right"> {state.total}</StyledTableCell>
-              <StyledTableCell align="right"> {state.deathIncrease}</StyledTableCell>
-              <StyledTableCell align="right"> {state.hospitalized}</StyledTableCell>
-              <StyledTableCell align="right"> {state.hospitalizedCurrently}</StyledTableCell>
-              <StyledTableCell align="right">  {state.hospitalizedIncrease}</StyledTableCell>
-              <StyledTableCell align="right"> {state.lastModified}</StyledTableCell>
-              <StyledTableCell align="right">  {state.negativeIncrease}</StyledTableCell>
-              <StyledTableCell align="right">  {state.recovered}</StyledTableCell>
-              <StyledTableCell align="right"> {state.totalTestResults}</StyledTableCell>
-              <StyledTableCell align="right">  {state.totalTestResultsIncrease}</StyledTableCell> 
-             */}
       
     </div>
   )

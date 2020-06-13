@@ -24,7 +24,6 @@ function ReactMap() {
     width: '100vw',
     height: '100vh',
     zoom: 3
-   
   })
 
  let [selectedState, setSelectedState]= useState(null);
@@ -56,14 +55,13 @@ useEffect(()=>{
 
 
   let REACT_APP_MAPBOX_TOKEN= 
-  "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2theXJjNXNjMDdrbDJ2bW92bTdvZ29nZiJ9.D1KFp9vf33oCdJRSIhCc9g"
-
+  "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2tiZHZxNjVpMGZ6MjJ6bXVnYWZxbnEzOSJ9.IP_IrNqwNLG6yar2f9d6Qw"
 
   return (
     <div>
         <Navbar/>
    <ReactMapGL {...viewport} mapboxApiAccessToken={REACT_APP_MAPBOX_TOKEN} 
-   mapStyle="mapbox://styles/melkilic/ckb1candc02r41ipe62zxyus3"  
+   mapStyle="mapbox://styles/melkilic/ckbdrfn9516m01iry6d8v2w0o"  
    onViewportChange={viewport => {
           setViewport(viewport);
         }}>

@@ -46,7 +46,7 @@ export default function UsDaily() {
               {
                 label: "death",
                 data: deathArr,
-                backgroundColor: colorArr
+                backgroundColor: "#c26629"
               }
             ],
           });
@@ -56,7 +56,7 @@ export default function UsDaily() {
               {
                 label: "positive",
                 data: positiveArr,
-                backgroundColor: colorArr
+                backgroundColor: "#c9ad73"
               }
             ],
           });
@@ -162,7 +162,7 @@ export default function UsDaily() {
         }}
       />
 </div>
- <div style={{display: 'block', height: '300px', width: '1113px' }}>
+ {/* <div style={{display: 'block', height: '300px', width: '1113px' }}>
      <Pie
         data={chartData}
         options={{
@@ -200,7 +200,7 @@ export default function UsDaily() {
           },
         }}
       />  
-      </div>
+      </div> */}
     </div>
   );
 }

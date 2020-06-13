@@ -22,8 +22,8 @@ import Navbar from "./Navbar";
      let showState= useSelector(state=> state.mapState.state)
      return(
        
-      
-         <div>
+      // style={{"background-color": "white"}}
+         <div >
              <Navbar/>
              <div>
           <h2>{ showState.state} </h2>
