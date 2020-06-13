@@ -12,29 +12,38 @@ export default function UsCurrent(){
          const getCurrent=()=>{
            let hospitalizedArr=[]
            let deathArr=[]
-           let total=[]
-           let labels=["hospitalized","death", "total", "positive", "recovered","totalTestResults"]
+           let totalArr=[]
+           let positiveArr=[]
+           let recoveredArr=[]
+           let totalTestResultsArr=[]
+           let labels=["hospitalized","death", "confirmed cases", "recovered","total test results"]
            let colors=["#97c9a5","#bec997","#e0bfad","#e36868","#e4a8f0","#6e1239"]
+           let wholeArr=[]
 
         fetch('http://covidtracking.com/api/us')
       .then(response =>response.json())
       .then(response=> { 
         hospitalizedArr.push(response[0].hospitalized)
         deathArr.push(response[0].death)
-        total.push(response[0].total)
-
+        totalArr.push(response[0].total)
+        positiveArr.push(response[0].positive)
+        recoveredArr.push(response[0].recovered)
+        totalTestResultsArr.push(response[0].totalTestResults)
+        wholeArr.push(deathArr, hospitalizedArr, positiveArr,recoveredArr, totalTestResultsArr)
         console.log(response[0])
       
         //  console.log(response[0].hospitalized)
         setState({
-          labels: labels,
+         
           datasets: [
             {
-              // label: labels,
-              data: hospitalizedArr,deathArr,
+              label: "US Current Info",
+              data: wholeArr,
               backgroundColor: colors
             }
           ],
+          labels: labels,
+          borderWith:10
         });
         })
        
@@ -61,33 +70,9 @@ getCurrent();
           title: { 
               text: "US Current COVID-19 Data", 
               display: true,
-              fontSize: 25 
-            },
-          legend: {
-            display: true,
-            position: "right",
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 10,
-                  beginAtZero: true,
-                },
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
+              fontSize: 25,
+              backgroundColor: '#97c9a5'
+            }
         }}
       />  
       </div>
