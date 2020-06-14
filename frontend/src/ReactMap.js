@@ -18,11 +18,17 @@ function ReactMap() {
     // console.log(viewState)
     let history= useHistory()
 
+
+
   const [viewport, setViewport]=useState({
     latitude: 39.381266,
     longitude: -97.922211,
-    width: '100vw',
+    width: '80vw',
     height: '100vh',
+    frameborder:"0",
+    scrolling:"no",
+    marginheight:"0",
+     marginwidth:"0",
     zoom: 3
   })
 
@@ -118,6 +124,11 @@ useEffect(()=>{
   
 
    </ReactMapGL> 
+   <div style={{width: 20, height:100, backgroundColor:"white", right: "0px", top:"0px"}}>
+    <h2>
+      Total Cases:
+    </h2>
+   </div>
    </div>
   );
 }

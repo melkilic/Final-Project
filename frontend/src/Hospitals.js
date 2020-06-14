@@ -39,8 +39,6 @@ function Hospitals(props) {
         })
      
       setHospitals(workingHospitals)
-      // console.log(workingHospitals) 
-//    let hospital= hospital.features
       
     });
     
@@ -51,11 +49,18 @@ function Hospitals(props) {
      
     setSearchTerm(e.target.value);
   };
+ 
 
-//   useEffect(() => {
-    const results = arrayOfHospitals.filter((h) =>
-      h.properties.COUNTY_NAME.toLowerCase().startsWith(searchTerm)
+  useEffect(() => {
+    const results = arrayOfHospitals.filter((h) =>{
+       h.properties.COUNTY_NAME.toLowerCase().startsWith(searchTerm.toLowerCase())
+       setSearchResults(results);
+      }, [searchTerm]);
+    }
     );
+
+
+
     // setHospitals(results)
     // setSearchResults(results);
 //   }, [searchTerm]);
@@ -66,49 +71,29 @@ function Hospitals(props) {
         type="text"
         placeholder="Search"
         value={searchTerm}
-        onChange={(e) => handleChange(e)}
+        onChange={(e) =>{ handleChange(e)}}
       />
-         <ul>
-        {searchResults.map((item) => (
-     <li>{item.features.properties.COUNTY_NAME}</li>
-        
-        ))}
-      </ul>
 
       <GoogleMap
         defaultZoom={10}
         defaultCenter={{ lat: 29.7604, lng: -95.3698 }}
         defaultOptions={{ styles: mapStyles }}
       >
-        {/* hospitals across the US */}
+     {
+        searchResults.map(hospital=>
+          <Marker
+          key={hospital.properties.FID}
+          position={{
+            lat: hospital.geometry.coordinates[1],
+            lng: hospital.geometry.coordinates[0]
+          }}
+          onClick={() => {
+           setSelectedHospital(hospital);
+          }}
+          />
+        )
+      }
       </GoogleMap>
-      {/* {arrayOfHospitals.map(hospital => (
-            hospital.geometry!==null 
-            // && hospital.properties.HQ_ADDRESS1 !==null
-          //   && hospital.properties.NUM_ICU_BEDS!==null 
-          //   && hospital.properties.BED_UTILIZATION!== null 
-          //   && hospital.properties.NUM_STAFFED_BEDS !==null 
-          //   && hospital.properties.NUM_LICENSED_BEDS !==null 
-          //   && hospital.properties.AVG_VENTILATOR_USAGE !==null 
-          //   && hospital.properties.PEDI_ICU_BEDS !==null 
-          //   && hospital.properties.STATE_NAME !==null 
-          //   && hospital.properties.HQ_STATE!==null 
-            ?
-            <Marker
-            key={hospital.properties.FID}
-            position={{
-              lat: hospital.geometry.coordinates[1],
-              lng: hospital.geometry.coordinates[0]
-            }}
-            onClick={() => {
-             setSelectedHospital(hospital);
-            }}
-            />
-   :
-   null
-))} */}
-     
-   
     </div>
   );
 }
@@ -136,38 +121,3 @@ export default function Location() {
     </div>
   );
 }
-
-// export default function Hospitals() {
-//     let [features, setFeatures] = useState(null);
-//     let [geometry, setGeometry]= useState([])
-
-//     const getGeometry=()=>{
-//         fetch("https://opendata.arcgis.com/datasets/1044bb19da8d4dbfb6a96eb1b4ebf629_0.geojson")
-//         .then(response => {
-//           return response.json()
-//         })
-//         .then(text => {
-//             // console.log(text.features)
-//        let features= text.features
-//       features.forEach(f=>
-//           setGeometry(f.geometry)
-//           )
-//           console.log(features.properties)
-//       //geometry(the hook) is a hash including coordinates which is an array of two elements(long,lat)
-//     }
-
-//         )
-
-//     }
-//     useEffect(()=>{
-//         getGeometry();
-
-//       },{})
-
-//    return(
-//        <div>
-//            hi
-//        </div>
-//    )
-
-// }

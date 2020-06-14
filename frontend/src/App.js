@@ -17,6 +17,7 @@ import "./App.css";
 import "./App.scss";
 import './about.css'
 import Form from './Form'
+import Radar from './Radar'
 class App extends React.Component {
 
 
@@ -36,6 +37,7 @@ class App extends React.Component {
           <Route exact path={"/hospitals"} component={Location} />
           <Route exact path={"/about"} component={About} />
           <Route exact path={"/"} component={Form}/>
+          <Route exact path={"/radar"} component={Radar}/>
         </BrowserRouter>
        
 

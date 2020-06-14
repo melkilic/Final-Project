@@ -4,6 +4,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Navbar from "./Navbar";
 import Chart from 'chart.js'
 import { Bar, Line, Pie, Doughnut} from "react-chartjs-2";
+import Button from '@material-ui/core/Button'
 
 export default function UsCurrent(){
   
@@ -16,8 +17,8 @@ export default function UsCurrent(){
            let positiveArr=[]
            let recoveredArr=[]
            let totalTestResultsArr=[]
-           let labels=["hospitalized","death", "confirmed cases", "recovered","total test results"]
-           let colors=["#97c9a5","#bec997","#e0bfad","#e36868","#e4a8f0","#6e1239"]
+           let labels=["hospitalized","death", "confirmed cases", "recovered"]
+           let colors=["#97c9a5","#bec997","#e0bfad","#e36868","#e4a8f0"]
            let wholeArr=[]
 
         fetch('http://covidtracking.com/api/us')
@@ -29,7 +30,7 @@ export default function UsCurrent(){
         positiveArr.push(response[0].positive)
         recoveredArr.push(response[0].recovered)
         totalTestResultsArr.push(response[0].totalTestResults)
-        wholeArr.push(deathArr, hospitalizedArr, positiveArr,recoveredArr, totalTestResultsArr)
+        wholeArr.push(deathArr, hospitalizedArr, positiveArr,recoveredArr)
         console.log(response[0])
       
         //  console.log(response[0].hospitalized)
@@ -76,7 +77,9 @@ getCurrent();
         }}
       />  
       </div>
-
+      <Button style={{backgroundColor:"white"}} variant="outlined" className="nav-item active" href="/radar">
+             see more
+              </Button>
       
     </div>
   )
