@@ -98,7 +98,7 @@ body{
 }
 
 #about .about-img .man{
-    position: absolute;
+    position: relative;
     bottom: 161px;
     top: 12px;
     left: -2px;
@@ -127,4 +127,10 @@ p{
     padding: 10px 20px;
 }
 
+.table{
+    position: relative;
+    float:right;
+    top: 32px;
+    right: -5px;
+}
 

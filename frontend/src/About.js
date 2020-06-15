@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Navbar from "./Navbar";
 import './about_man.png'
-import './about_triangle.png'
+import './image0-1.jpeg'
 import 'font-awesome/css/font-awesome.min.css';
 import {Bootstrap, Grid, Row, Col} from 'react-bootstrap';
 
 export default function About(){
     const img= require('./about_man.png')
     const triangle=require('./about_triangle.png')
+    const me= require('./image0-3.jpeg')
       return (
         <div>
             <Navbar/>
@@ -22,7 +23,7 @@ export default function About(){
                 <div className="col-md-5">
                   <div className="about-img">
                      {/* <img className="shape" src={triangle} alt="" /> */}
-                    {/* <img className="man" src={img} alt="" /> */}
+                    {/* <img className="man" src={me} alt="" />  */}
                   </div>
                 </div>
                 <br />
