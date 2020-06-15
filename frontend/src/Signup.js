@@ -64,7 +64,7 @@ export default function SignUp(props){
             <input 
             
              
-            type="text" name="password" placeholder="password"
+            type="password" name="password" placeholder="password"
               value={new_user.new_password}
               onChange={(e) =>
                 changeNewUser({ ...new_user, new_password: e.target.value })

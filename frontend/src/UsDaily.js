@@ -49,7 +49,7 @@ export default function UsDaily() {
             {
               label: "death",
               data: deathArr,
-              backgroundColor: "#c26629",
+              backgroundColor: "#4f8c7c",
             },
           ],
         });
@@ -59,7 +59,7 @@ export default function UsDaily() {
             {
               label: "positive",
               data: positiveArr,
-              backgroundColor: "#c9ad73",
+              backgroundColor: "#246a91",
             },
           ],
         });

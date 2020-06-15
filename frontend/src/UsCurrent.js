@@ -77,9 +77,9 @@ getCurrent();
         }}
       />  
       </div>
-      <Button style={{backgroundColor:"white"}} variant="outlined" className="nav-item active" href="/radar">
+      {/* <Button style={{backgroundColor:"white"}} variant="outlined" className="nav-item active" href="/radar">
              see more
-              </Button>
+              </Button> */}
       
     </div>
   )

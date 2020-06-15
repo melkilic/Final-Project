@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
 import {handleStateChange} from './Action/MapAction'
 import Navbar from './Navbar'
-
+import './icons8-coronavirus-50.png'
 
 function ReactMap() {
   
@@ -63,6 +63,8 @@ useEffect(()=>{
   let REACT_APP_MAPBOX_TOKEN= 
   "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2tiZHZxNjVpMGZ6MjJ6bXVnYWZxbnEzOSJ9.IP_IrNqwNLG6yar2f9d6Qw"
 
+
+  const virus= require('./icons8-coronavirus-16.png')
   return (
     <div>
         <Navbar/>
@@ -88,9 +90,8 @@ useEffect(()=>{
               e.preventDefault();
               setSelectedState(state)
             }}>
-           <Icon style={{ "color": "#e0f2f1"}}> <span className="material-icons">
-           maps_ugc
-</span></Icon>
+          {/* <img src={virus} all=""></img> */}
+          <img src="https://img.icons8.com/ios-filled/30/000000/coronavirus.png"/>
 </button>
             
            {/* <Icon style={{ color: green[500] }} className="far fa-viruses"/> */}
