@@ -61,7 +61,7 @@ getCurrent();
     <div className="chart" >
       
        <Navbar/>
-       <div style={{display: 'block', height: '500px', width: '1600px'}}>
+       <div style={{display: 'block', height: '500px', width: '1600px',"text-align": "center"}}>
        <Pie
         data={state}
         options={{

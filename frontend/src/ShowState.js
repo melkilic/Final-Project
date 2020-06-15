@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux'
 import Navbar from "./Navbar";
+import {Jumbotron, Container} from 'react-bootstrap'
  export default function ShowState(){
 
  const [stateInfo, setStateInfo]= useState([])
@@ -10,7 +11,7 @@ import Navbar from "./Navbar";
          setStateInfo(
       await fetch('https://covidtracking.com/api/states/info')
      .then(response =>response.json())
-       .then(data=> console.log(data))
+      //  .then(data=> console.log(data))
         )
     }
  fetchData();
@@ -26,6 +27,7 @@ import Navbar from "./Navbar";
          <div >
              <Navbar/>
              <div className="show">
+                <div className="show2">
           <h2>{ showState.state} </h2>
           <h3>Data Quality Grade:{showState.dataQualityGrade}</h3>
           <h3>Fips: {showState.fips}</h3>
@@ -38,7 +40,20 @@ import Navbar from "./Navbar";
           <h3>Total Test Results: {showState.totalTestResults}</h3>
           <h3>Total Test Results Increase: {showState.totalTestResultsIncrease}</h3>
           <h3>Last Update: {showState.lastUpdateEt}</h3>
-          </div>
+         
+         
+</div>
+</div>
+
+<Jumbotron fluid className="jumbotron">
+  <Container>
+    <h2>Fluid jumbotron</h2>
+    <p>
+      This is a modified jumbotron that occupies the entire horizontal space of
+      its parent.
+    </p>
+  </Container>
+</Jumbotron>
          </div>
          
      )

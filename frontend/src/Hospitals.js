@@ -1,14 +1,16 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import Icon from '@material-ui/core/Icon';
 import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
   Marker,
-  InfoWindow,
+  InfoWindow
 } from "react-google-maps";
 import { useLoadScript} from '@react-google-maps/api'
+import {Popup} from 'react-map-gl'
 import Navbar from "./Navbar";
 import mapStyles from "./mapStyles";
 // import Search from "./Search";
@@ -28,12 +30,11 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 
 function Hospitals(props) {
-  let [selectedHospital, setSelectedHospital] = useState(null);
   let [arrayOfHospitals, setHospitals] = useState([]);
   let [center,setCenter]= useState({ lat: 29.7604, 
     lng: -95.3698 })
+let [selectedHospital, setSelectedHospital]= useState(null)
 
-  const libraries = ["places"];
 const mapContainerStyle = {
   height: "100vh",
   width: "100vw",
@@ -85,7 +86,8 @@ const options = {
 
   // if (loadError) return "Error";
   // if (!isLoaded) return "Loading...";
-console.log(center)
+
+// console.log(center)
   return (
     <div>
       <h1>
@@ -95,15 +97,27 @@ console.log(center)
         </span>
       </h1>
       <GoogleMap
-        defaultZoom={10}
+        zoom={8}
         center={center}
         mapContainerStyle={mapContainerStyle}
         defaultOptions={options}
         onLoad={onMapLoad}
        
       >
-        {/* {
-        searchResults.map(hospital=>
+
+      
+        {arrayOfHospitals.map(hospital=>
+        hospital.geometry!==null 
+        && hospital.properties.HQ_ADDRESS1 !==null
+     && hospital.properties.NUM_ICU_BEDS!==null 
+   && hospital.properties.BED_UTILIZATION!== null 
+       && hospital.properties.NUM_STAFFED_BEDS !==null 
+       && hospital.properties.NUM_LICENSED_BEDS !==null 
+    && hospital.properties.AVG_VENTILATOR_USAGE !==null 
+       && hospital.properties.PEDI_ICU_BEDS !==null 
+         && hospital.properties.STATE_NAME !==null 
+       && hospital.properties.HQ_STATE!==null 
+        ?
           <Marker
           key={hospital.properties.FID}
           position={{
@@ -113,9 +127,38 @@ console.log(center)
           onClick={() => {
            setSelectedHospital(hospital);
           }}
-          />
-        )
-      } */}
+          >
+          
+            </Marker>
+       : null )
+      }
+      {selectedHospital && (
+        <InfoWindow
+          onCloseClick={() => {
+            setSelectedHospital(null);
+          }}
+          position={{
+            lat: selectedHospital.geometry.coordinates[1],
+            lng: selectedHospital.geometry.coordinates[0]
+          }}
+        >
+         
+          <div>
+         
+            <h3>Hospital Name: {selectedHospital.properties.HOSPITAL_NAME}</h3>
+            <h3>Hospital Type: {selectedHospital.properties.HOSPITAL_TYPE}</h3>
+        <h3>Hospital Address: {selectedHospital.properties.HQ_ADDRESS}, {selectedHospital.properties.HQ_CITY} {selectedHospital.properties.HQ_STATE} {selectedHospital.properties.HQ_ZIP_CODE}</h3>
+            <h3>Adult ICU Beds: {selectedHospital.properties.ADULT_ICU_BEDS}</h3>
+            <h3>Average Ventilator Usage: {selectedHospital.properties.AVG_VENTILATOR_USAGE}</h3>
+            <h3>Number of Licensed Beds: {selectedHospital.properties.NUM_LICENSED_BEDS}</h3>
+            <h3>Number of Staffed Beds: {selectedHospital.properties.NUM_STAFFED_BEDS}</h3>
+            <h3>Pediatric ICU Beds: {selectedHospital.properties.PEDI_ICU_BEDS}</h3>
+            <h3>Potential Increase in Bed Capacity: {selectedHospital.properties.Potential_Increase_In_Bed_Capac}</h3>
+            <h3>Bed Utilization: {selectedHospital.properties.BED_UTILIZATION}</h3>
+          </div>
+        </InfoWindow>
+      )}
+        {console.log(selectedHospital)}
       </GoogleMap>
       <Search panTo={panTo} setCenter={setCenter} />
     </div>
@@ -151,7 +194,7 @@ function Search(props) {
       lat, lng
       })
 
-      console.log(lat,lng)
+      // console.log(lat,lng)
       // props.panTo({ lat, lng });
     } catch (error) {
       console.log("😱 Error: ", error);
@@ -167,7 +210,7 @@ function Search(props) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search your county"
+          placeholder="Search your location"
         />
         <ComboboxPopover>
           <ComboboxList>
