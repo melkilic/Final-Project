@@ -8,6 +8,7 @@ import {
   Marker,
   InfoWindow,
 } from "react-google-maps";
+import { useLoadScript} from '@react-google-maps/api'
 import Navbar from "./Navbar";
 import mapStyles from "./mapStyles";
 // import Search from "./Search";
@@ -27,12 +28,25 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 
 function Hospitals(props) {
-  // const [searchTerm, setSearchTerm] = useState('');
-
-  // const [searchResults, setSearchResults] = useState([]);
-
   let [selectedHospital, setSelectedHospital] = useState(null);
   let [arrayOfHospitals, setHospitals] = useState([]);
+  let [center,setCenter]= useState({ lat: 29.7604, 
+    lng: -95.3698 })
+
+  const libraries = ["places"];
+const mapContainerStyle = {
+  height: "100vh",
+  width: "100vw",
+};
+const options = {
+  styles: mapStyles,
+  disableDefaultUI: true,
+  zoomControl: true,
+};
+// const center = {
+//   lat: 29.7604, 
+//   lng: -95.3698 
+// };
 
   useEffect(() => {
     fetch(
@@ -53,6 +67,25 @@ function Hospitals(props) {
       });
   }, []);
 
+  // const { isLoaded, loadError } = useLoadScript({
+  //   googleMapsApiKey: "AIzaSyCFs-QDwnIOUJAzb2rGEK5p5V0n9pTJ884",
+  //   libraries,
+  // });
+
+
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  const panTo = React.useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
+
+  // if (loadError) return "Error";
+  // if (!isLoaded) return "Loading...";
+console.log(center)
   return (
     <div>
       <h1>
@@ -63,8 +96,11 @@ function Hospitals(props) {
       </h1>
       <GoogleMap
         defaultZoom={10}
-        defaultCenter={{ lat: 29.7604, lng: -95.3698 }}
-        defaultOptions={{ styles: mapStyles }}
+        center={center}
+        mapContainerStyle={mapContainerStyle}
+        defaultOptions={options}
+        onLoad={onMapLoad}
+       
       >
         {/* {
         searchResults.map(hospital=>
@@ -81,12 +117,12 @@ function Hospitals(props) {
         )
       } */}
       </GoogleMap>
-      <Search />
+      <Search panTo={panTo} setCenter={setCenter} />
     </div>
   );
 }
 
-function Search() {
+function Search(props) {
   const {
     ready,
     value,
@@ -111,7 +147,12 @@ function Search() {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
-      // panTo({ lat, lng });
+      props.setCenter({
+      lat, lng
+      })
+
+      console.log(lat,lng)
+      // props.panTo({ lat, lng });
     } catch (error) {
       console.log("😱 Error: ", error);
     }
@@ -120,22 +161,13 @@ function Search() {
   return (
     <div className="search">
       <Combobox
-        onSelect={async (address) => {
-          try {
-            const results = await getGeocode({ address });
-            const { lat, lng } = await getLatLng(results[0]);
-            console.log(lat, lng);
-          } catch (error) {
-            console.log("error");
-          }
-          console.log(address);
-        }}
+        onSelect={handleSelect}
       >
         <ComboboxInput
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search your location"
+          placeholder="Search your county"
         />
         <ComboboxPopover>
           <ComboboxList>

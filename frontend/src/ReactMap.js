@@ -108,8 +108,8 @@ useEffect(()=>{
         }}
        >
 
-        <div>
-         <h2 style={{"color": "dark-blue"}}  onClick={()=> history.push('/show')}>{viewState.state}</h2>
+        <div onClick={()=> history.push('/show')}>
+         <h2 >{viewState.state}</h2>
           {viewState.positive !== null ?  <h4>Positive Cases: {viewState.positive}</h4> : <h4>Positive Cases: No current info</h4>}
           {viewState.negative !==null ?  <h4>Negative Cases: {viewState.negative}</h4> : <h4> Negative Cases: No current info</h4> }
           {viewState.death !== null ?  <h4>Death:{viewState.death}</h4> : <h4> Death: No current info</h4>}

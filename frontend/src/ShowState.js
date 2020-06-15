@@ -22,10 +22,10 @@ import Navbar from "./Navbar";
      let showState= useSelector(state=> state.mapState.state)
      return(
        
-      // style={{"background-color": "white"}}
+     
          <div >
              <Navbar/>
-             <div>
+             <div className="show">
           <h2>{ showState.state} </h2>
           <h3>Data Quality Grade:{showState.dataQualityGrade}</h3>
           <h3>Fips: {showState.fips}</h3>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { message, Button, Space } from 'antd';
-
+import {useHistory} from 'react-router'
 export default function SignUp(props){
     let [new_user, changeNewUser] = useState({
         new_username: "",
         new_password: ""
       });
+      let history=useHistory()
       let dispatch=useDispatch()
       async function handleCreate(e) {
         e.preventDefault();
@@ -22,6 +23,7 @@ export default function SignUp(props){
           }),
         });
 
+   
         let { success, id } = await response.json();
         if (success) {
           message.success('You successfully signed up.')
@@ -29,7 +31,7 @@ export default function SignUp(props){
             type: 'USER',
             user: id
           })
-          props.history.push("/home", id);
+          history.push("/home", id);
         } else {
           message.error("You can't use this username");
         }
@@ -98,7 +100,7 @@ export default function SignUp(props){
           </div>
    
           <div className="footer">
-      <button type="button" className="btn"  input="submit">
+      <button type="submit" className="btn"  input="submit">
       Sign Up
       </button>
     </div>
