@@ -90,12 +90,12 @@ const options = {
 // console.log(center)
   return (
     <div>
-      <h1>
+      <h3>
         Hospitals{" "}
         <span role="img" aria-label="hospital">
           🏥
         </span>
-      </h1>
+      </h3>
       <GoogleMap
         zoom={8}
         center={center}
@@ -128,7 +128,8 @@ const options = {
            setSelectedHospital(hospital);
           }}
           >
-          
+            {/* make it work tomorrow */}
+          {/* <img src="https://img.icons8.com/color/48/fa314a/rh-plus.png"/> */}
             </Marker>
        : null )
       }

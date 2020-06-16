@@ -30,7 +30,7 @@ function ReactMap() {
         return response.json();
       })
       .then((data) => {
-        // console.log(data)
+        console.log(data)
         let deathCount = 0;
         let recoveredCount = 0;
         let confirmedCount = 0;
@@ -40,7 +40,7 @@ function ReactMap() {
           recoveredCount = state.recovered + recoveredCount;
           confirmedCount = state.positive + confirmedCount;
         });
-        console.log(deathCount, recoveredCount, confirmedCount);
+        // console.log(deathCount, recoveredCount, confirmedCount);
         setTotal({
           death: deathCount,
           recovered: recoveredCount,
@@ -48,7 +48,7 @@ function ReactMap() {
         });
       });
   }, []);
-  console.log(total);
+  // console.log(total);
 
   const [viewport, setViewport] = useState({
     latitude: 39.381266,
@@ -90,14 +90,25 @@ function ReactMap() {
   let REACT_APP_MAPBOX_TOKEN =
     "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2tiZHZxNjVpMGZ6MjJ6bXVnYWZxbnEzOSJ9.IP_IrNqwNLG6yar2f9d6Qw";
 
-  const virus = require("./icons8-coronavirus-16.png");
+
   return (
     <div>
       <Navbar />
       <div className="table">
-        <p>Total Confirmed: {total.confirmed}</p>
-        <p>Recovered Cases: {total.recovered}</p>
-        <p>Total Deaths: {total.death}</p>
+        <h1>Total Confirmed:  </h1>
+          <h1>{total.confirmed}</h1>
+          <br/>
+          <br/>
+          <br/>
+        <h1>Recovered People: </h1>
+        <h1>{total.recovered}</h1>
+        <br/>
+        <br/>
+        <br/>
+        <h1>Total Deaths:</h1>
+        <h1> {total.death}</h1>
+        {/* <h1>Last Update:</h1>
+        <h1></h1> */}
       </div>
       <ReactMapGL
         {...viewport}
@@ -121,9 +132,8 @@ function ReactMap() {
                 e.preventDefault();
                 setSelectedState(state);
               }}
-            >
-              {/* <img src={virus} all=""></img> */}
-              <img src="https://img.icons8.com/ios-filled/30/000000/coronavirus.png" />
+>
+<img src="https://img.icons8.com/cotton/30/000000/place-marker.png"/>
             </button>
 
             {/* <Icon style={{ color: green[500] }} className="far fa-viruses"/> */}

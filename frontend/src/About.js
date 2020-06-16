@@ -8,7 +8,7 @@ import {Bootstrap, Grid, Row, Col} from 'react-bootstrap';
 export default function About(){
     const img= require('./about_man.png')
     const triangle=require('./about_triangle.png')
-    const me= require('./image0-3.jpeg')
+    const me= require('./image0.png')
       return (
         <div>
             <Navbar/>
@@ -23,7 +23,7 @@ export default function About(){
                 <div className="col-md-5">
                   <div className="about-img">
                      {/* <img className="shape" src={triangle} alt="" /> */}
-                    {/* <img className="man" src={me} alt="" />  */}
+                    <img className="man" src={me} alt="" /> 
                   </div>
                 </div>
                 <br />
@@ -38,11 +38,10 @@ export default function About(){
                     <button className="btn btn-danger">Hire Me</button>
                   </h3>
                   <ul className="about-link">
-                    <li><a href><i className="fa fa-fonticons" /></a></li>
-                    <li><a href><i className="fa fa-envira" /></a></li>
-                    <li><a href><i className="fa fa-reddit-alien" /></a></li>
-                    <li><a href><i className="fa fa-dribbble" /></a></li>
-                    <li><a href><i className="fa fa-youtube-play" /></a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/#inbox"><i class="fa fa-envelope"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/melike-kilic-8b959a1a3/"><i className="fa fa-linkedin-square" /></a></li>
+                    <li><a href="https://github.com/melkilic"><i className="fa fa-github" /></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCjIus15v1gCuHrGL8m2ZmxA?view_as=subscriber"><i className="fa fa-youtube-play" /></a></li>
                   </ul>
                 </div>
               </div>
