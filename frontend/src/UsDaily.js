@@ -88,6 +88,7 @@ export default function UsDaily() {
               text: "COVID-19 Death-Date Ratio",
               display: true,
               fontSize: 25,
+              fontColor: '#e6e8eb'
             },
             legend: {
               display: true,
@@ -118,7 +119,8 @@ export default function UsDaily() {
         />
       </div>
     
-  
+    <br></br>
+    <br></br>
       <div style={divStyle}>
         <Line
           data={positive}
@@ -129,6 +131,7 @@ export default function UsDaily() {
               text: "Positive Cases vs Total Test Results",
               display: true,
               fontSize: 25,
+              fontColor: '#e6e8eb'
             },
             legend: {
               display: true,

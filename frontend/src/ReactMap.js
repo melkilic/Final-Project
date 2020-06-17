@@ -54,7 +54,7 @@ function ReactMap() {
  
   let today= new Date()
 
-  let date= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '-' + today.getHours() + ':'+ today.getMinutes();
+  let date= (today.getMonth()+1) + '/' +  today.getDate()+ '/' + today.getFullYear()+ ',' + today.getHours() + ':'+ today.getMinutes();
   console.log(date)
   
   const [viewport, setViewport] = useState({
@@ -117,7 +117,8 @@ function ReactMap() {
         <br/>
         <br/>
         <br/>
-        <h1 className="tabledata">Last Update:</h1>
+        <h1 className="tabledata">Last Updated At</h1>
+        <h1 className="tabledata">(M/DD/YYYY):</h1>
         <h1 className="tabledata">{date}</h1>
       </div>
       <ReactMapGL

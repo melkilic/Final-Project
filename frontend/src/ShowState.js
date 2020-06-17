@@ -28,12 +28,21 @@ export default function ShowState() {
       <tr id="states">{showState.state} </tr>
         <tr>
           <th>Data Quality Grade:</th>
+          {showState.dataQualityGrade !==null ?
           <td>{showState.dataQualityGrade}</td>
+          :
+          <td>No Current Info</td>
+}
+
           </tr>
           <tr>
           <th>Death Increase:</th>
-          <td> {showState.deathIncrease}</td>
+          {showState.deathIncrease !==null ?
+          <td> {showState.deathIncrease}</td> : 
+          <td>No Current Info</td>
+          }
           </tr>
+
           <tr>
           <th>Cumulative Hospitalizations:</th>
           {showState.hospitalizedCumulative !==null ? 
@@ -43,7 +52,7 @@ export default function ShowState() {
 }
           </tr>
           <tr>
-          <th>Hospitalized Currently:</th>
+          <th>Currently Hospitalized:</th>
           {showState.hospitalizedCurrently !==null ?
           <td> {showState.hospitalizedCurrently}</td>
           :
@@ -51,29 +60,55 @@ export default function ShowState() {
 }
           </tr>
           <tr>
-          <th>Hospitalized Increase:</th>
+          <th>Hospitalization Increase:</th>
+          {showState.hospitalizedIncrease !==null ?
           <td> {showState.hospitalizedIncrease}</td>
+          :
+          <td>No Current Info</td>
+}
           </tr>
 
           <tr>
-          <th>Positive Increase:</th>
+          <th>Increase In Confirmed Cases:</th>
+          {showState.positiveIncrease !==null ?
           <td> {showState.positiveIncrease}</td>
-          </tr>
+          :
+          <td>No Current Info</td>
+}
+         </tr>
+
           <tr>
-          <th>Negative Increase:</th>
+          <th>Increase In Negative Cases:</th>
+          {showState.negativeIncrease !==null ? 
           <td> {showState.negativeIncrease}</td>
+          :
+          <td>No Current Info</td>
+}
           </tr>
+
           <tr>
           <th>Total Test Results: </th>
+          {showState.totalTestResults !==null ? 
           <td>{showState.totalTestResults}</td>
+          :
+          <td>No Current Info</td>
+}
           </tr>
           <tr>
-          <th>Total Test Results Increase:</th>
+          <th>Increase In Total Test Results:</th>
+          {showState.totalTestResultsIncrease !==null ?
           <td> {showState.totalTestResultsIncrease}</td>
+          :
+          <td>No Current Info</td>
+}
           </tr>
           <tr>
-          <th>Last Update: </th>
+          <th>Last Updated At: </th>
+          {showState.lastUpdateEt !==null ?
           <td>{showState.lastUpdateEt}</td>
+          :
+          <td>No Current Info</td>
+          }
           </tr>
       
       </table>

@@ -48,7 +48,8 @@ export default function UsCurrent(){
       
         //  console.log(response[0].hospitalized)
         setState({
-         
+          labels: labels,
+          borderWith:0,
           datasets: [
             {
               label: "US Current Info",
@@ -56,8 +57,7 @@ export default function UsCurrent(){
               backgroundColor: colors
             }
           ],
-          labels: labels,
-          borderWith:0
+          
         });
         })
        
@@ -76,14 +76,15 @@ let style={
   color: "white",
   marginTop: "25px",
   padding: 0}
+
   return (
-    <div className="chart" >
+    <div >
       
        <Navbar/>
     
-       <h1 className= "current" >
+       {/* <h1 className= "current" >
          US Current Covid-19 Data
-       </h1>
+       </h1> */}
 
        <div className="pie">
        <Pie
@@ -91,21 +92,23 @@ let style={
         options={{
           cutoutPercentage: 30,
           responsive: true,
-           maintainAspectRatio: false,
-           layout: {
-            padding: {
-                left: 50,
-                right: 0,
-                top: 0,
-                bottom: 0
-            }
-        },
+          aspectRatio: 1,
+          
+
+        //    layout: {
+        //     padding: {
+        //         left: 50,
+        //         right: 0,
+        //         top: 0,
+        //         bottom: 0
+        //     }
+        // },
          
           title: { 
-              text: "", 
+              text: "US Current Covid-19 Data", 
               display: true,
-              fontSize: 25,
-            
+              fontSize: 35,
+            fontColor: "#e6e8eb",
              
             }
         }}

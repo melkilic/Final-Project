@@ -30,13 +30,13 @@ export default function About(){
                 <div className="col-md-7 about-right">
                   <h2 className="color-3"><b>About Me</b>
                   </h2>
-                  <p className="p-first text-white">
+                  <h3 className="p-first text-white">
                     hey, it's me, delilah.
-                  </p>
-                
-                  <h3 className="color-3 social-link-text">
-                    <button className="btn btn-danger">Hire Me</button>
                   </h3>
+                
+                  {/* <h3 className="color-3 social-link-text">
+                    <button className="btn btn-danger">Hire Me</button>
+                  </h3> */}
                   <ul className="about-link">
                     <li><a href="https://mail.google.com/mail/u/0/#inbox"><i class="fa fa-envelope"></i></a></li>
                     <li><a href="https://www.linkedin.com/in/melike-kilic-8b959a1a3/"><i className="fa fa-linkedin-square" /></a></li>
