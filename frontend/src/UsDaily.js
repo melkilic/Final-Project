@@ -20,6 +20,8 @@ export default function UsDaily() {
     let positiveArr = [];
 
     let totalTestResults = [];
+    let deathColor= "#646d5a"
+    let positiveColor="#859d87"
 
     fetch("https:covidtracking.com/api/us/daily")
       .then((res) => res.json())
@@ -43,13 +45,15 @@ export default function UsDaily() {
         totalTestResults.reverse();
         console.log(totalTestResults);
         
+      
+
         setDeath({
           labels: dateArr,
           datasets: [
             {
               label: "death",
               data: deathArr,
-              backgroundColor: "#4f8c7c",
+              backgroundColor: deathColor,
             },
           ],
         });
@@ -59,7 +63,7 @@ export default function UsDaily() {
             {
               label: "positive",
               data: positiveArr,
-              backgroundColor: "#246a91",
+              backgroundColor: positiveColor,
             },
           ],
         });
@@ -70,10 +74,11 @@ export default function UsDaily() {
     chart();
   }, []);
 
+  let divStyle={ display: "block", height: "300px", width: "1450px" }
   return (
     <div className="chart">
       <Navbar />
-      <div style={{ display: "block", height: "300px", width: "1600px" }}>
+      <div style={divStyle}>
         <Bar
           data={death}
           options={{
@@ -112,7 +117,9 @@ export default function UsDaily() {
           }}
         />
       </div>
-      <div style={{ display: "block", height: "300px", width: "1600px" }}>
+    
+  
+      <div style={divStyle}>
         <Line
           data={positive}
           options={{

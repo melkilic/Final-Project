@@ -3,10 +3,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import * as states from "./states.json";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import { e0f2f1 } from "@material-ui/core/colors";
-import Icon from "@material-ui/core/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { handleStateChange } from "./Action/MapAction";
@@ -22,6 +18,7 @@ function ReactMap() {
     death: 0,
     confirmed: 0,
     recovered: 0,
+    lastUpdate:0
   });
 
   useEffect(() => {
@@ -34,21 +31,25 @@ function ReactMap() {
         let deathCount = 0;
         let recoveredCount = 0;
         let confirmedCount = 0;
+        let lastUpdateCount=0;
 
         data.forEach((state) => {
           deathCount = state.death + deathCount;
           recoveredCount = state.recovered + recoveredCount;
           confirmedCount = state.positive + confirmedCount;
+         lastUpdateCount= state.lastUpdateEt
         });
         // console.log(deathCount, recoveredCount, confirmedCount);
         setTotal({
           death: deathCount,
           recovered: recoveredCount,
           confirmed: confirmedCount,
+          lastUpdate: lastUpdateCount
         });
       });
   }, []);
   // console.log(total);
+  console.log(viewState.lastUpdateEt)
 
   const [viewport, setViewport] = useState({
     latitude: 39.381266,
@@ -107,8 +108,11 @@ function ReactMap() {
         <br/>
         <h1>Total Deaths:</h1>
         <h1> {total.death}</h1>
-        {/* <h1>Last Update:</h1>
-        <h1></h1> */}
+        <br/>
+        <br/>
+        <br/>
+        <h1>Last Update:</h1>
+        <h1>{total.lastUpdate}</h1>
       </div>
       <ReactMapGL
         {...viewport}

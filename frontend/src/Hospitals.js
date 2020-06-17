@@ -76,18 +76,20 @@ const options = {
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
+    mapRef.center = map;
   }, []);
 
   const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.center.panTo({ lat, lng });
+    mapRef.center.setZoom(14);
   }, []);
 
   // if (loadError) return "Error";
   // if (!isLoaded) return "Loading...";
 
 // console.log(center)
+let [zoom,setZoom]=useState(8)
+
   return (
     <div>
       <h3>
@@ -97,7 +99,7 @@ const options = {
         </span>
       </h3>
       <GoogleMap
-        zoom={8}
+        zoom={zoom}
         center={center}
         mapContainerStyle={mapContainerStyle}
         defaultOptions={options}
@@ -119,6 +121,7 @@ const options = {
        && hospital.properties.HQ_STATE!==null 
         ?
           <Marker
+          // icon={{url:"https://img.icons8.com/doodle/30/000000/drop-of-blood.png"}}
           key={hospital.properties.FID}
           position={{
             lat: hospital.geometry.coordinates[1],
@@ -128,8 +131,7 @@ const options = {
            setSelectedHospital(hospital);
           }}
           >
-            {/* make it work tomorrow */}
-          {/* <img src="https://img.icons8.com/color/48/fa314a/rh-plus.png"/> */}
+          
             </Marker>
        : null )
       }
@@ -161,7 +163,10 @@ const options = {
       )}
         {console.log(selectedHospital)}
       </GoogleMap>
-      <Search panTo={panTo} setCenter={setCenter} />
+      <Search 
+      panTo={panTo} 
+      setCenter={setCenter}
+      setZoom={setZoom} />
     </div>
   );
 }
@@ -175,8 +180,8 @@ function Search(props) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => 29.7604, lng: () => -95.3698 },
-      radius: 100 * 1000,
+      location: { lat: () => 39.381266, lng: () => -97.922211 },
+      radius: 200 * 1000,
     },
   });
 
@@ -187,6 +192,8 @@ function Search(props) {
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
+    props.setZoom(12)
+    // address.setZoom(14)
 
     try {
       const results = await getGeocode({ address });

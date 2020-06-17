@@ -18,8 +18,21 @@ export default function UsCurrent(){
            let recoveredArr=[]
            let totalTestResultsArr=[]
            let labels=["hospitalized","death", "confirmed cases", "recovered"]
-           let colors=["#97c9a5","#bec997","#e0bfad","#e36868","#e4a8f0"]
+           let colors=[
+            "#83af70",
+           "#d3cc96",
+           "#fff0d7",
+           "#488f31"
+          ]
            let wholeArr=[]
+
+        
+
+
+// #f1f1f1
+// #f0b8b8
+
+// #d43d51
 
         fetch('http://covidtracking.com/api/us')
       .then(response =>response.json())
@@ -61,26 +74,28 @@ getCurrent();
     <div className="chart" >
       
        <Navbar/>
-       <div style={{display: 'block', height: '500px', width: '1600px',"text-align": "center"}}>
+       <h1 style={{textAlign:"center", marginTop:0,marginLeft: 'auto',
+    marginRight: 'auto', fontSize: "50px"}}>
+         US Current Covid-19 Data
+       </h1>
+       <div className="pie">
        <Pie
         data={state}
         options={{
           cutoutPercentage: 30,
           responsive: true,
            maintainAspectRatio: false,
+         
           title: { 
-              text: "US Current COVID-19 Data", 
+              text: "", 
               display: true,
               fontSize: 25,
-              backgroundColor: '#97c9a5'
+            
+             
             }
         }}
       />  
-      </div>
-      {/* <Button style={{backgroundColor:"white"}} variant="outlined" className="nav-item active" href="/radar">
-             see more
-              </Button> */}
-      
+      </div> 
     </div>
   )
   }

@@ -27,10 +27,10 @@ import {Jumbotron, Container} from 'react-bootstrap'
          <div >
              <Navbar/>
              <div className="show">
-                <div className="show2">
+                {/* <div className="show2"> */}
           <h2>{ showState.state} </h2>
           <h3>Data Quality Grade:{showState.dataQualityGrade}</h3>
-          <h3>Fips: {showState.fips}</h3>
+          {/* <h3>Fips: {showState.fips}</h3> */}
           <h3> Death Increase: {showState.deathIncrease}</h3>
           <h3>Cumulative Hospitalizations: {showState.hospitalizedCumulative}</h3>
           <h3>Hospitalized Currently: {showState.hospitalizedCurrently}</h3>
@@ -42,15 +42,14 @@ import {Jumbotron, Container} from 'react-bootstrap'
           <h3>Last Update: {showState.lastUpdateEt}</h3>
          
          
-</div>
+{/* </div> */}
 </div>
 
 <Jumbotron fluid className="jumbotron">
   <Container>
-    <h2>Fluid jumbotron</h2>
+    {/* <h2>Fluid jumbotron</h2> */}
     <p>
-      This is a modified jumbotron that occupies the entire horizontal space of
-      its parent.
+    This page is updated regularly.
     </p>
   </Container>
 </Jumbotron>

@@ -1,7 +1,7 @@
 
 	 /* background color is here: */
 body{
-    background:rgb(8,19,23);
+    background:rgb(0,0,0);
     font-family: tahoma;
     text-align: justify;
     overflow: hidden;
@@ -44,7 +44,7 @@ body{
 
 
 #about h2{
-    margin-bottom: 47px;
+    margin-bottom: 30px;
     margin-top: 12px;
     
 }
@@ -104,8 +104,7 @@ body{
 
 #about .about-img .man{
     position: relative;
-    bottom: 200px;
-    top: 12px;
+    bottom: 20px;
     left: -2px;
     max-width:100%;
     height:auto; 
@@ -115,6 +114,9 @@ body{
 
 .color-3{
     color: #d6c6b2;
+    right:-2px;
+    bottom:20px;
+    
 }
 
 
@@ -123,12 +125,13 @@ body{
 }
 
 
-p{
-    margin-bottom: 0;
+ p{
+    /* margin-bottom: 0;
     font-size: 16px;
     line-height: 24px;
-    color: #d6c6b2;
-}
+    color: #d6c6b2; */
+    text-align:center;
+} 
 
 .btn-danger{
     border-radius: 0;
@@ -138,7 +141,7 @@ p{
 .table{
 
     position: fixed; 
-    top: 50px; 
+    top: 20px; 
     right: 35px; 
     border: 0;
     box-sizing: border-box;

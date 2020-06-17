@@ -8,7 +8,7 @@ import {Bootstrap, Grid, Row, Col} from 'react-bootstrap';
 export default function About(){
     const img= require('./about_man.png')
     const triangle=require('./about_triangle.png')
-    const me= require('./image0.png')
+    const me= require('./5DC5DCB9-A306-4FB9-BBC5-635968C8836A.jpg')
       return (
         <div>
             <Navbar/>
@@ -31,7 +31,7 @@ export default function About(){
                   <h2 className="color-3"><b>About Me</b>
                   </h2>
                   <p className="p-first text-white">
-                    hi
+                    hey, it's me, delilah.
                   </p>
                 
                   <h3 className="color-3 social-link-text">
