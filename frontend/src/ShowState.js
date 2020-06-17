@@ -1,74 +1,91 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux'
+/** @format */
+
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
-import {Jumbotron, Container} from 'react-bootstrap'
- export default function ShowState(){
+import { Jumbotron, Container } from "react-bootstrap";
+export default function ShowState() {
+  const [stateInfo, setStateInfo] = useState([]);
 
- const [stateInfo, setStateInfo]= useState([])
-
-    useEffect(()=>{ 
-       async function fetchData(){
-         setStateInfo(
-      await fetch('https://covidtracking.com/api/states/info')
-     .then(response =>response.json())
-      //  .then(data=> console.log(data))
-        )
+  useEffect(() => {
+    async function fetchData() {
+      setStateInfo(
+        await fetch(
+          "https://covidtracking.com/api/states/info"
+        ).then((response) => response.json())
+        //  .then(data=> console.log(data))
+      );
     }
- fetchData();
-  }
-  ,[] )
-    
- 
+    fetchData();
+  }, []);
 
-     let showState= useSelector(state=> state.mapState.state)
-     return(
-       
-     
-         <div >
-             <Navbar/>
-             <div className="show">
-                {/* <div className="show2"> */}
-          <h2>{ showState.state} </h2>
-          <h3>Data Quality Grade:{showState.dataQualityGrade}</h3>
-          {/* <h3>Fips: {showState.fips}</h3> */}
-          <h3> Death Increase: {showState.deathIncrease}</h3>
-          <h3>Cumulative Hospitalizations: {showState.hospitalizedCumulative}</h3>
-          <h3>Hospitalized Currently: {showState.hospitalizedCurrently}</h3>
-          <h3>Hospitalized Increase: {showState.hospitalizedIncrease}</h3>
-          <h3> Positive Increase: {showState.positiveIncrease}</h3>
-          <h3>Negative Increase: {showState.negativeIncrease}</h3>
-          <h3>Total Test Results: {showState.totalTestResults}</h3>
-          <h3>Total Test Results Increase: {showState.totalTestResultsIncrease}</h3>
-          <h3>Last Update: {showState.lastUpdateEt}</h3>
-         
-         
-{/* </div> */}
-</div>
+  let showState = useSelector((state) => state.mapState.state);
+  return (
+    <div>
+      <Navbar />
+      <h2 id="states">{showState.state} </h2>
+      <table id="info">
+        <tr>
+          <th>Data Quality Grade:</th>
+          <td>{showState.dataQualityGrade}</td>
+          </tr>
+          <tr>
+          <th>Death Increase:</th>
+          <td> {showState.deathIncrease}</td>
+          </tr>
+          <tr>
+          <th>Cumulative Hospitalizations:</th>
+          {showState.hospitalizedCumulative !==null ? 
+          <td> {showState.hospitalizedCumulative}</td>
+          :
+          <td>No Current Info</td>
+}
+          </tr>
+          <tr>
+          <th>Hospitalized Currently:</th>
+          {showState.hospitalizedCurrently !==null ?
+          <td> {showState.hospitalizedCurrently}</td>
+          :
+          <td>No Current Info</td>
+}
+          </tr>
+          <tr>
+          <th>Hospitalized Increase:</th>
+          <td> {showState.hospitalizedIncrease}</td>
+          </tr>
 
-<Jumbotron fluid className="jumbotron">
-  <Container>
-    {/* <h2>Fluid jumbotron</h2> */}
-    <p>
-    This page is updated regularly.
-    </p>
-  </Container>
-</Jumbotron>
-         </div>
-         
-     )
+          <tr>
+          <th>Positive Increase:</th>
+          <td> {showState.positiveIncrease}</td>
+          </tr>
+          <tr>
+          <th>Negative Increase:</th>
+          <td> {showState.negativeIncrease}</td>
+          </tr>
+          <tr>
+          <th>Total Test Results: </th>
+          <td>{showState.totalTestResults}</td>
+          </tr>
+          <tr>
+          <th>Total Test Results Increase:</th>
+          <td> {showState.totalTestResultsIncrease}</td>
+          </tr>
+          <tr>
+          <th>Last Update: </th>
+          <td>{showState.lastUpdateEt}</td>
+          </tr>
+      
+      </table>
 
-
-
- }
-
-
-
- 
-
-
-
-
-
+      <Jumbotron fluid className="jumbotron">
+        <Container>
+          {/* <h2>Fluid jumbotron</h2> */}
+          <p>This page is updated regularly.</p>
+        </Container>
+      </Jumbotron>
+    </div>
+  );
+}
 
 //   let getStateInfo=()=> {
 //     fetch('https://covidtracking.com/api/states/info')
@@ -77,58 +94,11 @@ import {Jumbotron, Container} from 'react-bootstrap'
 // }
 //  getStateInfo()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let getUsCurrent=()=>{
-  //   fetch('http://covidtracking.com/api/us')
-  // .then(response =>response.json())
-  // // .then(response=> {console.log("US Current:", response)})
-  // }
+// let getUsCurrent=()=>{
+//   fetch('http://covidtracking.com/api/us')
+// .then(response =>response.json())
+// // .then(response=> {console.log("US Current:", response)})
+// }
 
 // getUsCurrent()
 
@@ -137,10 +107,6 @@ import {Jumbotron, Container} from 'react-bootstrap'
 //   .then(response =>response.json())
 //   // .then(response=> {console.log("US Daily:", response)})
 //   }
-
-
-
-
 
 //   let getStateInfo=()=> {
 //     fetch('https://covidtracking.com/api/states/info')

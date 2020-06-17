@@ -21,8 +21,8 @@ export default function UsCurrent(){
            let colors=[
             "#83af70",
            "#d3cc96",
-           "#fff0d7",
-           "#488f31"
+           "#ceb192",
+           "#ffd291"
           ]
            let wholeArr=[]
 
