@@ -4,11 +4,13 @@
     flex-direction: column;
     // align-items: center;
     background-color: #282c34;
+    // background-image: url('image0.png'); 
 
   
     .header {
+      color:black;
       font-size: 24px;
-      font-family: "Open Sans", sans-serif;
+      font-family: "Lucida Console", Courier, monospace;
     }
   
     .content {
@@ -16,6 +18,7 @@
       flex-direction: column;
   
       .image {
+        background-image: url('1.jpeg');
         width: 21em;
         img {
           width: 100%;
@@ -36,6 +39,8 @@
           width: fit-content;
           label {
             font-size: 20px;
+            background-color: #000000;
+        
           }
           input {
             margin-top: 6px;
@@ -51,7 +56,7 @@
             transition: all 250ms ease-in-out;
             &:hover {
               background-color: #ffffff;
-              box-shadow: 0px 0px 14px 0.3px #0e81ce96;
+              box-shadow: 0px 0px 14px 0.3px rgb(47, 71, 47);
             }
   
             &:focus {

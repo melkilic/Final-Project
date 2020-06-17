@@ -38,19 +38,25 @@ function ReactMap() {
           recoveredCount = state.recovered + recoveredCount;
           confirmedCount = state.positive + confirmedCount;
          lastUpdateCount= state.lastUpdateEt
+        //  console.log(state.lastUpdateEt)
         });
-        // console.log(deathCount, recoveredCount, confirmedCount);
+     
+      // console.log(deathCount, recoveredCount, confirmedCount);
         setTotal({
           death: deathCount,
           recovered: recoveredCount,
           confirmed: confirmedCount,
-          lastUpdate: lastUpdateCount
+          lastUpdate: date
         });
       });
   }, []);
   // console.log(total);
-  console.log(viewState.lastUpdateEt)
+ 
+  let today= new Date()
 
+  let date= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '-' + today.getHours() + ':'+ today.getMinutes();
+  console.log(date)
+  
   const [viewport, setViewport] = useState({
     latitude: 39.381266,
     longitude: -97.922211,
@@ -96,23 +102,23 @@ function ReactMap() {
     <div>
       <Navbar />
       <div className="table">
-        <h1>Total Confirmed:  </h1>
-          <h1>{total.confirmed}</h1>
+        <h1 className="tabledata">Total Confirmed:  </h1>
+          <h1 className="tabledata">{total.confirmed}</h1>
           <br/>
           <br/>
           <br/>
-        <h1>Recovered People: </h1>
-        <h1>{total.recovered}</h1>
+        <h1 className="tabledata">Recovered People: </h1>
+        <h1 className="tabledata">{total.recovered}</h1>
         <br/>
         <br/>
         <br/>
-        <h1>Total Deaths:</h1>
-        <h1> {total.death}</h1>
+        <h1 className="tabledata">Total Deaths:</h1>
+        <h1 className="tabledata"> {total.death}</h1>
         <br/>
         <br/>
         <br/>
-        <h1>Last Update:</h1>
-        <h1>{total.lastUpdate}</h1>
+        <h1 className="tabledata">Last Update:</h1>
+        <h1 className="tabledata">{date}</h1>
       </div>
       <ReactMapGL
         {...viewport}

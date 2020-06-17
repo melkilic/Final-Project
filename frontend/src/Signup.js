@@ -38,6 +38,7 @@ export default function SignUp(props){
       }
 
     return(
+      <div id="loginpage">
       <div className="base-container" ref={props.containerRef}>
         <form
           onSubmit={handleCreate}>
@@ -47,6 +48,18 @@ export default function SignUp(props){
         <img src="https://www.bynarycodes.com/wp-content/uploads/2018/07/word-image-1024x576.jpg" />
       </div> */}
       <div className="form">
+      <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Email </label>
+            <input
+              name="email" placeholder="email"
+              type="text"
+              value={new_user.new_email}
+              onChange={(e) =>
+                changeNewUser({ ...new_user, new_email: e.target.value })
+              }
+/>
+            </div>
+            
         <div className="form-group">
         
          <label htmlFor="username">Username</label>
@@ -73,7 +86,7 @@ export default function SignUp(props){
               }
             />
           </div> 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="exampleInputPassword1">Address</label>
             <input
               name="address" placeholder="address"
@@ -84,27 +97,18 @@ export default function SignUp(props){
               }
         
             />
-          </div>
-         <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Email </label>
-            <input
-              name="email" placeholder="email"
-              type="text"
-              value={new_user.new_email}
-              onChange={(e) =>
-                changeNewUser({ ...new_user, new_email: e.target.value })
-              }
-/>
-            </div>
+          </div> */}
+        
             </div>
           </div>
    
           <div className="footer">
-      <button type="submit" className="btn"  input="submit">
+      <button style={{color: "black"}}type="submit" className="btn"  input="submit">
       Sign Up
       </button>
     </div>
         </form>
+        </div>
         </div>
 
     )

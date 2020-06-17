@@ -34,7 +34,14 @@ export default class Form extends Component{
         const currentActive = isLogginActive ? "Login" : "Sign Up";
     
         return (
-          <div className="App">
+          <div>
+
+      {/* <div id="apptitle"> */}
+
+          <h1 id="covidtracker">COVID TRACKR</h1>
+     
+          {/* </div> */}
+              <div className="App">
             <div className="login">
               <div className="container" ref={(ref) => (this.container = ref)}>
                 {isLogginActive && (
@@ -51,6 +58,9 @@ export default class Form extends Component{
                 onClick={this.changeState.bind(this)}
               />
             </div>
+            </div>
+              
+  
             </div>
         )}
     

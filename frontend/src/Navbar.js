@@ -8,6 +8,7 @@ import { e0f2f1, blue } from '@material-ui/core/colors';
 import { blueGrey} from '@material-ui/core/colors';
 import {useDispatch, useSelector} from 'react-redux'
 import Alert from '@material-ui/lab/Alert';
+import {useHistory} from 'react-router'
 
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
@@ -35,25 +36,26 @@ function handleClick(event) {
 export default function Navbar() {
   let user = useSelector(state=>state.userState.state)
    let dispatch=useDispatch()
+   let history=useHistory()
   // console.log(user)
   return (
 
    
     <Breadcrumbs aria-label="breadcrumb">
       <StyledBreadcrumb
-        component="a"
-        href="/home"
+        component="span"
+        onClick={()=>history.push("/home")}
         label="Home"
         icon={<HomeRoundedIcon fontSize="small" />}
        
       />
-      <StyledBreadcrumb component="a" href="/daily" label="US Daily" />
-      <StyledBreadcrumb component="a" href="/current" label="US Current"  />
-      <StyledBreadcrumb component="a" href="/hospitals" label="Hospitals"  />
+      <StyledBreadcrumb component="span" onClick={()=>history.push("/daily")} label="US Daily" />
+      <StyledBreadcrumb component="span" onClick={()=>history.push("/current")} label="US Current"  />
+      <StyledBreadcrumb component="span" onClick={()=>history.push("/hospitals")} label="Hospitals"  />
       {/* {user !== undefined || null ? */}
 
-      <StyledBreadcrumb component="a" href="/about" label="About"  />
-       <StyledBreadcrumb component="a" label="Log out" onClick={()=> dispatch({type: "LOG_OUT"})} href="/"/>
+      <StyledBreadcrumb component="span" onClick={()=>history.push("/about")} label="About"  />
+       <StyledBreadcrumb component="span" label="Log out" onClick={()=> dispatch({type: "LOG_OUT"})} onClick={()=>history.push("/")}/>
    
            {/* :  */}
     <div>

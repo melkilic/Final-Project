@@ -57,7 +57,7 @@ export default function UsCurrent(){
             }
           ],
           labels: labels,
-          borderWith:10
+          borderWith:0
         });
         })
        
@@ -70,14 +70,21 @@ useEffect(()=>{
 getCurrent();
 },[])
 
+let style={
+  textAlign:"center",
+  position: "relative",
+  color: "white",
+  marginTop: "25px",
+  padding: 0}
   return (
     <div className="chart" >
       
        <Navbar/>
-       <h1 style={{textAlign:"center", marginTop:0,marginLeft: 'auto',
-    marginRight: 'auto', fontSize: "50px"}}>
+    
+       <h1 className= "current" >
          US Current Covid-19 Data
        </h1>
+
        <div className="pie">
        <Pie
         data={state}
@@ -85,6 +92,14 @@ getCurrent();
           cutoutPercentage: 30,
           responsive: true,
            maintainAspectRatio: false,
+           layout: {
+            padding: {
+                left: 50,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        },
          
           title: { 
               text: "", 

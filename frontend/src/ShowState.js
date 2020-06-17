@@ -23,8 +23,9 @@ export default function ShowState() {
   return (
     <div>
       <Navbar />
-      <h2 id="states">{showState.state} </h2>
+      
       <table id="info">
+      <tr id="states">{showState.state} </tr>
         <tr>
           <th>Data Quality Grade:</th>
           <td>{showState.dataQualityGrade}</td>

@@ -42,16 +42,18 @@ let history=useHistory()
     }
   }
 
+  // const img=require('./1.jpeg')
   
   
   return (
+    <div id="loginpage">
     <div className="base-container" ref={props.containerRef} >
       <form onSubmit={(e)=>handleSubmit(e)}
        >
          <div className="header">Login</div>
          <div className="content">
       {/* <div className="image">
-        <img src="https://www.bynarycodes.com/wp-content/uploads/2018/07/word-image-1024x576.jpg" />
+        <img src={img} />
       </div> */}
       <div className="form">
         <div className="form-group">
@@ -77,12 +79,13 @@ let history=useHistory()
        </div>
        </div>
         <div className="footer">
-      <button type="submit" className="btn"  input="submit">
+      <button style={{color: "black"}} type="submit" className="btn"  input="submit">
         Login
       </button>
     </div>
       </form>
      
+    </div>
     </div>
   );
 }
