@@ -6,7 +6,7 @@ import { Bar, Line, Pie } from "react-chartjs-2";
 import Navbar from "./Navbar";
 import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-
+import { Jumbotron, Container } from "react-bootstrap";
 export default function UsDaily() {
   const [chartData, setChartData] = useState({});
   const [death, setDeath] = useState([]);
@@ -43,8 +43,14 @@ export default function UsDaily() {
         deathArr.reverse();
         positiveArr.reverse();
         totalTestResults.reverse();
-        console.log(totalTestResults);
+        // console.log(totalTestResults);
         
+        dateArr= dateArr.map(r=>{
+        let year= r.toString().slice(0,4)
+        let month= r.toString().slice(4,6)
+        let day= r.toString().slice(6,8)
+        return `${month}/${day}/${year}`
+        })
       
 
         setDeath({
@@ -61,7 +67,7 @@ export default function UsDaily() {
           labels: totalTestResults,
           datasets: [
             {
-              label: "positive",
+              label: "confirmed",
               data: positiveArr,
               backgroundColor: positiveColor,
             },
@@ -85,7 +91,7 @@ export default function UsDaily() {
             responsive: true,
             maintainAspectRatio: false,
             title: {
-              text: "COVID-19 Death-Date Ratio",
+              text: "Mortality Rate",
               display: true,
               fontSize: 25,
               fontColor: '#e6e8eb'
@@ -93,6 +99,7 @@ export default function UsDaily() {
             legend: {
               display: true,
               position: "right",
+             
             },
             scales: {
               yAxes: [
@@ -101,6 +108,7 @@ export default function UsDaily() {
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
+                    fontColor: "white"
                   },
                   gridLines: {
                     display: false,
@@ -108,9 +116,13 @@ export default function UsDaily() {
                 },
               ],
               xAxes: [
-                {
+                { 
+                  ticks:{
+                    fontColor: "white"
+                  },
                   gridLines: {
                     display: false,
+                    
                   },
                 },
               ],
@@ -128,7 +140,7 @@ export default function UsDaily() {
             responsive: true,
             maintainAspectRatio: false,
             title: {
-              text: "Positive Cases vs Total Test Results",
+              text: "Confirmed Cases & Total Test Results",
               display: true,
               fontSize: 25,
               fontColor: '#e6e8eb'
@@ -141,6 +153,7 @@ export default function UsDaily() {
               yAxes: [
                 {
                   ticks: {
+                      fontColor: "white",
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
@@ -152,6 +165,9 @@ export default function UsDaily() {
               ],
               xAxes: [
                 {
+                  ticks:{
+                    fontColor: "white"
+                  },
                   gridLines: {
                     display: false,
                   },
@@ -161,7 +177,11 @@ export default function UsDaily() {
           }}
         />
       </div>
-     
+      <Jumbotron fluid className="jumbotron">
+        <Container>
+          <p>The Covid Tracking Project API has been used on this page.</p>
+        </Container>
+      </Jumbotron>
     </div>
   );
 }

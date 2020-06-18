@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Chart from 'chart.js'
 import { Bar, Line, Pie, Doughnut} from "react-chartjs-2";
 import Button from '@material-ui/core/Button'
+import { Jumbotron, Container } from "react-bootstrap";
 
 export default function UsCurrent(){
   
@@ -19,10 +20,14 @@ export default function UsCurrent(){
            let totalTestResultsArr=[]
            let labels=["hospitalized","death", "confirmed cases", "recovered"]
            let colors=[
-            "#83af70",
-           "#d3cc96",
-           "#ceb192",
-           "#ffd291"
+            "#c9daa4",
+           "#bcc9b8",
+           "#8bb590",
+           "#d9e8d3"
+          // '#f7fffa',
+          // '#d2efb9',
+          // '#dcd364',
+          // '#e3be54'
           ]
            let wholeArr=[]
 
@@ -93,27 +98,23 @@ let style={
           cutoutPercentage: 30,
           responsive: true,
           aspectRatio: 1,
-          
-
-        //    layout: {
-        //     padding: {
-        //         left: 50,
-        //         right: 0,
-        //         top: 0,
-        //         bottom: 0
-        //     }
-        // },
-         
+        
           title: { 
-              text: "US Current Covid-19 Data", 
+              text: "US Current COVID-19 Data", 
               display: true,
               fontSize: 35,
             fontColor: "#e6e8eb",
              
             }
         }}
-      />  
+      /> 
       </div> 
+
+      <Jumbotron fluid className="jumbotron1">
+        <Container>
+          <p>The Covid Tracking Project API has been used on this page.</p>
+        </Container>
+      </Jumbotron>
     </div>
   )
   }

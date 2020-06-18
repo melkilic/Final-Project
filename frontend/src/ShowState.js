@@ -23,7 +23,6 @@ export default function ShowState() {
   return (
     <div>
       <Navbar />
-      
       <table id="info">
       <tr id="states">{showState.state} </tr>
         <tr>
@@ -115,8 +114,7 @@ export default function ShowState() {
 
       <Jumbotron fluid className="jumbotron">
         <Container>
-          {/* <h2>Fluid jumbotron</h2> */}
-          <p>This page is updated regularly.</p>
+          <p>The Covid Tracking Project API has been used on this page.</p>
         </Container>
       </Jumbotron>
     </div>

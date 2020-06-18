@@ -42,7 +42,7 @@ export default function SignUp(props){
       <div className="base-container" ref={props.containerRef}>
         <form
           onSubmit={handleCreate}>
-      <div className="header">Sign Up</div>
+      {/* <div className="header">Sign Up</div> */}
       <div className="content">
         {/* <div className="image">
         <img src="https://www.bynarycodes.com/wp-content/uploads/2018/07/word-image-1024x576.jpg" />

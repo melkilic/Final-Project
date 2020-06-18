@@ -7,9 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { handleStateChange } from "./Action/MapAction";
 import Navbar from "./Navbar";
-import "./icons8-coronavirus-50.png";
+
 
 function ReactMap() {
+  let[mapLoading,setMapLoading]=useState(true);
   let dispatch = useDispatch();
   let viewState = useSelector((state) => state.mapState.state);
   // console.log(viewState)
@@ -21,6 +22,7 @@ function ReactMap() {
     lastUpdate:0
   });
 
+  
   useEffect(() => {
     fetch("https://covidtracking.com/api/states")
       .then((response) => {
@@ -54,7 +56,7 @@ function ReactMap() {
  
   let today= new Date()
 
-  let date= (today.getMonth()+1) + '/' +  today.getDate()+ '/' + today.getFullYear()+ ',' + today.getHours() + ':'+ today.getMinutes();
+  let date= (today.getMonth()+1) + '/' +  today.getDate()+ '/' + today.getFullYear()+ ', ' + today.getHours() + ':'+ today.getMinutes();
   console.log(date)
   
   const [viewport, setViewport] = useState({
@@ -97,17 +99,23 @@ function ReactMap() {
   let REACT_APP_MAPBOX_TOKEN =
     "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2tiZHZxNjVpMGZ6MjJ6bXVnYWZxbnEzOSJ9.IP_IrNqwNLG6yar2f9d6Qw";
 
+    useEffect(()=>{
+      setTimeout(() => {
+        setMapLoading(false)
+      }, 2000);
+     },[])
 
   return (
     <div>
       <Navbar />
+      <div style={{width: "100vw",height:"100vh", position:"fixed", display: mapLoading ? "block" : "none", top:0, left:0, backgroundColor:"black", color: "white", zIndex: 100}}> Loading... </div>
       <div className="table">
         <h1 className="tabledata">Total Confirmed:  </h1>
           <h1 className="tabledata">{total.confirmed}</h1>
           <br/>
           <br/>
           <br/>
-        <h1 className="tabledata">Recovered People: </h1>
+        <h1 className="tabledata">Recovered: </h1>
         <h1 className="tabledata">{total.recovered}</h1>
         <br/>
         <br/>
@@ -161,9 +169,9 @@ function ReactMap() {
             <div onClick={() => history.push("/show")}>
               <h2>{viewState.state}</h2>
               {viewState.positive !== null ? (
-                <h4>Positive Cases: {viewState.positive}</h4>
+                <h4>Confirmed Cases: {viewState.positive}</h4>
               ) : (
-                <h4>Positive Cases: No current info</h4>
+                <h4>Confirmed Cases: No current info</h4>
               )}
               {viewState.negative !== null ? (
                 <h4>Negative Cases: {viewState.negative}</h4>

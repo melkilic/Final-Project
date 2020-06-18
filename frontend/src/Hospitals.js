@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import { Jumbotron, Container } from "react-bootstrap";
 import Icon from '@material-ui/core/Icon';
 import {
   GoogleMap,
@@ -30,9 +31,10 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 
 function Hospitals(props) {
+  let[mapLoading,setMapLoading]=useState(true);
   let [arrayOfHospitals, setHospitals] = useState([]);
-  let [center,setCenter]= useState({ lat: 29.7604, 
-    lng: -95.3698 })
+  let [center,setCenter]= useState({ lat: 39.381266, 
+    lng:-97.922211 })
 let [selectedHospital, setSelectedHospital]= useState(null)
 
 const mapContainerStyle = {
@@ -72,26 +74,38 @@ const options = {
   //   googleMapsApiKey: "AIzaSyCFs-QDwnIOUJAzb2rGEK5p5V0n9pTJ884",
   //   libraries,
   // });
+console.log(center)
 
+  // const mapRef = React.useRef();
+  // const onMapLoad = React.useCallback((map) => {
+  //   setMapLoading(false)
+  //   console.log("hi")
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
-    mapRef.center = map;
-  }, []);
+  // }, []);
 
-  const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.center.panTo({ lat, lng });
-    mapRef.center.setZoom(14);
-  }, []);
+  // const panTo = React.useCallback(({ lat, lng }) => {
+  //   mapRef.center.panTo({ lat, lng });
+  //   mapRef.center.setZoom(14);
+  // }, []);
 
   // if (loadError) return "Error";
   // if (!isLoaded) return "Loading...";
 
 // console.log(center)
-let [zoom,setZoom]=useState(8)
+let [zoom,setZoom]=useState(5)
+
+
+useEffect(()=>{
+ setTimeout(() => {
+   setMapLoading(false)
+ }, 3000);
+},[])
+
+// if(mapLoading==true){ return <p> Getting locations</p>}
 
   return (
     <div>
+      <div style={{width: "100vw",height:"100vh", position:"fixed", display: mapLoading ? "block" : "none", top:0, left:0, backgroundColor:"black", color: "white", zIndex: 100}}> Loading... </div>
       <h3>
         Hospitals{" "}
         <span role="img" aria-label="hospital">
@@ -103,7 +117,7 @@ let [zoom,setZoom]=useState(8)
         center={center}
         mapContainerStyle={mapContainerStyle}
         defaultOptions={options}
-        onLoad={onMapLoad}
+        
        
       >
 
@@ -164,7 +178,7 @@ let [zoom,setZoom]=useState(8)
         {console.log(selectedHospital)}
       </GoogleMap>
       <Search 
-      panTo={panTo} 
+      // panTo={panTo} 
       setCenter={setCenter}
       setZoom={setZoom} />
     </div>
@@ -229,6 +243,8 @@ function Search(props) {
           </ComboboxList>
         </ComboboxPopover>
       </Combobox>
+
+
     </div>
   );
 }
@@ -246,7 +262,7 @@ export default function Location() {
       >
         <WrappedMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCFs-QDwnIOUJAzb2rGEK5p5V0n9pTJ884`}
-          loadingElement={<div style={{ height: `100%` }} />}
+          loadingElement={<div style={{ height: `100%` }} > Loading</div>}
           containerElement={<div style={{ height: `1000px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />

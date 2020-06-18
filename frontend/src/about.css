@@ -11,9 +11,10 @@ body{
 #about{
     padding-top: 70px;
     padding-bottom: 101px;
+    width:1025px
 }
 
-#about .triangle-right{
+/* #about .triangle-right{
     margin-top: 95px;
     width: 0;
     height: 0;
@@ -30,7 +31,7 @@ body{
     top: 81px;
     width: 74%;
  
-}
+} */
 
 .fa-play{
     font-size: 100px;
@@ -104,10 +105,11 @@ body{
 
 #about .about-img .man{
     position: relative;
-    bottom: 20px;
+    bottom: 80px;
     left: -2px;
     max-width:100%;
     height:auto; 
+    margin-left:0px
     
     
 }

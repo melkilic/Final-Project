@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { message, Button, Space } from 'antd';
-
 import {useHistory} from 'react-router'
 export function Login(props) {
   let [user, changeUser] = useState({
@@ -42,15 +41,16 @@ let history=useHistory()
     }
   }
 
-  // const img=require('./1.jpeg')
+  // const img=require('./unite')
   
   
   return (
     <div id="loginpage">
+      
     <div className="base-container" ref={props.containerRef} >
       <form onSubmit={(e)=>handleSubmit(e)}
        >
-         <div className="header">Login</div>
+         {/* <div className="header">Login</div> */}
          <div className="content">
       {/* <div className="image">
         <img src={img} />
