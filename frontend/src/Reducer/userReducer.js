@@ -14,7 +14,7 @@ export const userReducer=(state=initialState, action)=>{
             }
             case 'LOG_OUT': 
                 return{
-              state: null
+              state: undefined
                 }
             
     }

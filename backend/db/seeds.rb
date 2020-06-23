@@ -14,5 +14,5 @@ require "faker"
 
 
 10.times do 
-    User.create({username: Faker::Name.first_name, password_digest:"123"})
+    User.create({username: Faker::Name.first_name, password:"123"})
 end

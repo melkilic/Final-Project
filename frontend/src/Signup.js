@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { message, Button, Space } from 'antd';
-
+import {useHistory} from 'react-router'
 export default function SignUp(props){
     let [new_user, changeNewUser] = useState({
         new_username: "",
         new_password: ""
       });
+      let history=useHistory()
       let dispatch=useDispatch()
       async function handleCreate(e) {
         e.preventDefault();
@@ -22,6 +23,7 @@ export default function SignUp(props){
           }),
         });
 
+   
         let { success, id } = await response.json();
         if (success) {
           message.success('You successfully signed up.')
@@ -29,22 +31,41 @@ export default function SignUp(props){
             type: 'USER',
             user: id
           })
-          props.history.push("/", id);
+          history.push("/home", id);
         } else {
           message.error("You can't use this username");
         }
       }
 
     return(
-        <div>
+      <div id="loginpage">
+      <div className="base-container" ref={props.containerRef}>
         <form
-          onSubmit={handleCreate}
-        >
-          <h1>Sign Up</h1>
-          <div >
-            <label>Username </label>
+          onSubmit={handleCreate}>
+      {/* <div className="header">Sign Up</div> */}
+      <div className="content">
+        {/* <div className="image">
+        <img src="https://www.bynarycodes.com/wp-content/uploads/2018/07/word-image-1024x576.jpg" />
+      </div> */}
+      <div className="form">
+      <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Email </label>
             <input
+              name="email" placeholder="email"
+              type="text"
+              value={new_user.new_email}
+              onChange={(e) =>
+                changeNewUser({ ...new_user, new_email: e.target.value })
+              }
+/>
+            </div>
             
+        <div className="form-group">
+        
+         <label htmlFor="username">Username</label>
+           
+            <input
+              name="username" placeholder="username"
               type="text"
               value={new_user.new_username}
               onChange={(e) =>
@@ -52,23 +73,23 @@ export default function SignUp(props){
               }
              
             />
-          </div>
-          <div>
-            <label for="exampleInputPassword1">Password </label>
+          </div> 
+           <div className="form-group">
+          <label htmlFor="password">Password</label>
             <input 
             
              
-              type="password"
+            type="password" name="password" placeholder="password"
               value={new_user.new_password}
               onChange={(e) =>
                 changeNewUser({ ...new_user, new_password: e.target.value })
               }
             />
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Address</label>
+          </div> 
+          {/* <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Address</label>
             <input
-             
+              name="address" placeholder="address"
               type="text"
               value={new_user.new_address}
               onChange={(e) =>
@@ -76,23 +97,19 @@ export default function SignUp(props){
               }
         
             />
+          </div> */}
+        
+            </div>
           </div>
-          <div >
-            <label for="exampleInputPassword1">Email </label>
-            <input
-             
-              type="text"
-              value={new_user.new_email}
-              onChange={(e) =>
-                changeNewUser({ ...new_user, new_email: e.target.value })
-              }
-            
-            />
-          </div>
-          <button input="submit" class="btn btn-primary">
-            Sign Up
-          </button>
+   
+          <div className="footer">
+      <button style={{color: "black"}}type="submit" className="btn"  input="submit">
+      Sign Up
+      </button>
+    </div>
         </form>
-      </div>
+        </div>
+        </div>
+
     )
 }

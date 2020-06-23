@@ -1,133 +1,120 @@
-// import React,  { useState, useEffect } from 'react';
-// import { AppBar, Toolbar, Typography, Grid} from "@material-ui/core"
-
-// 
-
-
-//     return(
-    
-//           <Grid container>
-//               <Grid item sm>
-//   {state.date}
-//   {state.dateChecked}
-//   {state.death}
-//   {state.deathIncrease}
-//   {state.hospitalized}
-//   {state.hospitalizedCurrently}
-//   {state.hospitalizedIncrease}
-//   {state.lastModified}
-//   {state.negative}
-//   {state.negativeIncrease}
-//   {state.positive}
-//   {state.positiveIncrease}
-//   {state.recovered}
-//   {state.states}
-//   {state.total}
-//   {state.totalTestResults}
-//   {state.totalTestResultsIncrease}
-//   </Grid>
-//   </Grid>
-   
-//     )
-// }
 
 import React,  { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Navbar from "./Navbar";
+import Chart from 'chart.js'
+import { Bar, Line, Pie, Doughnut} from "react-chartjs-2";
+import Button from '@material-ui/core/Button'
+import { Jumbotron, Container } from "react-bootstrap";
 
 export default function UsCurrent(){
+  
         const [state, setState] = useState([])
-         useEffect(()=>{
+
+         const getCurrent=()=>{
+           let hospitalizedArr=[]
+           let deathArr=[]
+           let totalArr=[]
+           let positiveArr=[]
+           let recoveredArr=[]
+           let totalTestResultsArr=[]
+           let labels=["hospitalized","death", "confirmed cases", "recovered"]
+           let colors=[
+            "#c9daa4",
+           "#bcc9b8",
+           "#8bb590",
+           "#d9e8d3"
+          // '#f7fffa',
+          // '#d2efb9',
+          // '#dcd364',
+          // '#e3be54'
+          ]
+           let wholeArr=[]
+
+        
+
+
+// #f1f1f1
+// #f0b8b8
+
+// #d43d51
+
         fetch('http://covidtracking.com/api/us')
       .then(response =>response.json())
       .then(response=> { 
-    
+        hospitalizedArr.push(response[0].hospitalized)
+        deathArr.push(response[0].death)
+        totalArr.push(response[0].total)
+        positiveArr.push(response[0].positive)
+        recoveredArr.push(response[0].recovered)
+        totalTestResultsArr.push(response[0].totalTestResults)
+        wholeArr.push(deathArr, hospitalizedArr, positiveArr,recoveredArr)
         console.log(response[0])
-         setState(response[0])
+      
+        //  console.log(response[0].hospitalized)
+        setState({
+          labels: labels,
+          borderWith:0,
+          datasets: [
+            {
+              label: "US Current Info",
+              data: wholeArr,
+              backgroundColor: colors
+            }
+          ],
+          
+        });
         })
-      }, [state])
+       
+      }
+     
     
-    
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+  
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
+useEffect(()=>{
+getCurrent();
+},[])
 
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
-
-
-  const classes = useStyles();
+let style={
+  textAlign:"center",
+  position: "relative",
+  color: "white",
+  marginTop: "25px",
+  padding: 0}
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow >
-            <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="right">Death</StyledTableCell>
-            <StyledTableCell align="right">Positive</StyledTableCell>
-            <StyledTableCell align="right">Negative</StyledTableCell>
-            <StyledTableCell align="right">Total</StyledTableCell>
-            <StyledTableCell align="right">deathIncrease</StyledTableCell>
-            <StyledTableCell align="right">hospitalized</StyledTableCell>
-            <StyledTableCell align="right">hospitalizedCurrently</StyledTableCell>
-            <StyledTableCell align="right">hospitalizedIncrease</StyledTableCell>
-            <StyledTableCell align="right">lastModified</StyledTableCell>
-            <StyledTableCell align="right">negativeIncrease</StyledTableCell>
-            <StyledTableCell align="right">recovered</StyledTableCell>
-            <StyledTableCell align="right">states</StyledTableCell>
-            <StyledTableCell align="right">totalTestResults</StyledTableCell>
-            <StyledTableCell align="right">totalTestResultsIncrease</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-         
-            <StyledTableRow>
-              <StyledTableCell component="th" scope="row">
-              {state.dateChecked}
-              </StyledTableCell>
-              <StyledTableCell align="right"> {state.death}</StyledTableCell>
-              <StyledTableCell align="right"> {state.positive}</StyledTableCell>
-              <StyledTableCell align="right"> {state.negative}</StyledTableCell>
-              <StyledTableCell align="right"> {state.total}</StyledTableCell>
-              <StyledTableCell align="right"> {state.deathIncrease}</StyledTableCell>
-              <StyledTableCell align="right"> {state.hospitalized}</StyledTableCell>
-              <StyledTableCell align="right"> {state.hospitalizedCurrently}</StyledTableCell>
-              <StyledTableCell align="right">  {state.hospitalizedIncrease}</StyledTableCell>
-              <StyledTableCell align="right"> {state.lastModified}</StyledTableCell>
-              <StyledTableCell align="right">  {state.negativeIncrease}</StyledTableCell>
-              <StyledTableCell align="right">  {state.recovered}</StyledTableCell>
-              <StyledTableCell align="right">  {state.states}</StyledTableCell>
-              <StyledTableCell align="right"> {state.totalTestResults}</StyledTableCell>
-              <StyledTableCell align="right">  {state.totalTestResultsIncrease}</StyledTableCell>
-            </StyledTableRow>
+    <div >
+      
+       <Navbar/>
+    
+       {/* <h1 className= "current" >
+         US Current Covid-19 Data
+       </h1> */}
+
+       <div className="pie">
+       <Pie
+        data={state}
+        options={{
+          cutoutPercentage: 30,
+          responsive: true,
+          aspectRatio: 1,
         
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-          }
+          title: { 
+              text: "US Current COVID-19 Data", 
+              display: true,
+              fontSize: 35,
+            fontColor: "#e6e8eb",
+             
+            }
+        }}
+      /> 
+      </div> 
+
+      <Jumbotron fluid className="jumbotron1">
+        <Container>
+          <p>The Covid Tracking Project API has been used on this page.</p>
+        </Container>
+      </Jumbotron>
+    </div>
+  )
+  }
