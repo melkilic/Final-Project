@@ -35,7 +35,7 @@ export default function ShowState() {
 
           </tr>
           <tr>
-          <th>Death Increase:</th>
+          <th>Mortality Increase:</th>
           {showState.deathIncrease !==null ?
           <td> {showState.deathIncrease}</td> : 
           <td>No Current Info</td>
@@ -68,7 +68,7 @@ export default function ShowState() {
           </tr>
 
           <tr>
-          <th>Increase In Confirmed Cases:</th>
+          <th>Confirmed Cases Increase:</th>
           {showState.positiveIncrease !==null ?
           <td> {showState.positiveIncrease}</td>
           :
@@ -77,7 +77,7 @@ export default function ShowState() {
          </tr>
 
           <tr>
-          <th>Increase In Negative Cases:</th>
+          <th>Negative Cases Increase:</th>
           {showState.negativeIncrease !==null ? 
           <td> {showState.negativeIncrease}</td>
           :
@@ -94,7 +94,7 @@ export default function ShowState() {
 }
           </tr>
           <tr>
-          <th>Increase In Total Test Results:</th>
+          <th>Total Test Results Increase:</th>
           {showState.totalTestResultsIncrease !==null ?
           <td> {showState.totalTestResultsIncrease}</td>
           :

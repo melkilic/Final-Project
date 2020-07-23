@@ -80,7 +80,7 @@ export default function UsDaily() {
     chart();
   }, []);
 
-  let divStyle={ display: "block", height: "300px", width: "1450px" }
+  let divStyle={ display: "block", height: "300px", width: "1425px" }
   return (
     <div className="chart">
       <Navbar />

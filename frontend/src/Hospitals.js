@@ -207,7 +207,7 @@ function Search(props) {
     setValue(address, false);
     clearSuggestions();
     props.setZoom(12)
-    // address.setZoom(14)
+    // setValue('')
 
     try {
       const results = await getGeocode({ address });
@@ -261,7 +261,7 @@ export default function Location() {
         }}
       >
         <WrappedMap
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCFs-QDwnIOUJAzb2rGEK5p5V0n9pTJ884`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
           loadingElement={<div style={{ height: `100%` }} > Loading</div>}
           containerElement={<div style={{ height: `1000px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
