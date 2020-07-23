@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navbar from "./Navbar";
-import './about_man.png'
 import 'font-awesome/css/font-awesome.min.css';
 import {Bootstrap, Grid, Row, Col} from 'react-bootstrap';
 
@@ -9,7 +8,6 @@ export default function About(){
       return (
         <div>
             <Navbar/>
-          {/* Hello world */}
           <div className="awesome">
           </div>
           <meta charSet="UTF-8" />
@@ -32,10 +30,10 @@ export default function About(){
 It will keep on spreading and eventually taking more lives unless we take action quickly and mindfully."
 </h3>
 <h3 className="p-first text-white">
-This is how my second blog in Flatiron begins. Knowing how important it is to get the latest 
-information, especially when it comes to a topic like this, I wanted to build a project about COVID-19.
+This is an excerpt from my second blog in Flatiron. Knowing how important it is to get the latest 
+information, especially when it comes to a topic like this, I wanted to build my capstone project about COVID-19.
   In this project, five APIs have been used; four from The Covid Tracking Project, one from Esri. 
-  The maps that I have used are  Google Maps and Mapbox maps.
+  The maps that I have used are Google Maps and Mapbox maps.
 </h3>
 
                 

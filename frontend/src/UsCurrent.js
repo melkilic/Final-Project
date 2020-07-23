@@ -100,7 +100,7 @@ let style={
           aspectRatio: 1,
         
           title: { 
-              text: "US Current COVID-19 Data", 
+              text: "Current COVID-19 Data", 
               display: true,
               fontSize: 35,
             fontColor: "#e6e8eb",
