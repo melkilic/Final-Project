@@ -21,7 +21,7 @@
     "font-awesome": "^4.7.0",
     "json2csv": "^5.0.1",
     "node-sass": "^4.14.1",
-    "plotly.js": "^1.54.1",
+    "plotly.js": "^1.54.6",
     "plotly.js-dist": "^1.54.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
