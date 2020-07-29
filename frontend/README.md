@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Covid-TrackR
+Covid TrackR is a real-time tracking app that allows you to display the overall COVID-19 information in the U.S, detailed information about the states, and view the hospital information based on the location you type.
+# Prerequisites
+Before you begin, ensure you have met the following requirements:
+
+You have installed the latest version of React.
+
+You have a <Windows/Linux/Mac> machine.
+
+
+
+
+<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -65,4 +77,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 ### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify -->
