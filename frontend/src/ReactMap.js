@@ -8,57 +8,60 @@ import { useHistory } from "react-router";
 import { handleStateChange } from "./Action/MapAction";
 import Navbar from "./Navbar";
 
-
 function ReactMap() {
-  let[mapLoading,setMapLoading]=useState(true);
+  let [mapLoading, setMapLoading] = useState(true);
   let dispatch = useDispatch();
   let viewState = useSelector((state) => state.mapState.state);
-  // console.log(viewState)
   let history = useHistory();
   let [total, setTotal] = useState({
     death: 0,
     confirmed: 0,
     recovered: 0,
-    lastUpdate:0
+    lastUpdate: 0,
   });
 
-  
   useEffect(() => {
     fetch("https://covidtracking.com/api/states")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        console.log(data);
         let deathCount = 0;
         let recoveredCount = 0;
         let confirmedCount = 0;
-        let lastUpdateCount=0;
+        let lastUpdateCount = 0;
 
         data.forEach((state) => {
           deathCount = state.death + deathCount;
           recoveredCount = state.recovered + recoveredCount;
           confirmedCount = state.positive + confirmedCount;
-         lastUpdateCount= state.lastUpdateEt
-        //  console.log(state.lastUpdateEt)
+          lastUpdateCount = state.lastUpdateEt;
         });
-     
-      // console.log(deathCount, recoveredCount, confirmedCount);
         setTotal({
           death: deathCount,
           recovered: recoveredCount,
           confirmed: confirmedCount,
-          lastUpdate: date
+          lastUpdate: date,
         });
       });
   }, []);
-  // console.log(total);
- 
-  let today= new Date()
 
-  let date= (today.getMonth()+1) + '/' +  today.getDate()+ '/' + today.getFullYear()+ ', ' + today.getHours() + ':'+ today.getMinutes();
-  console.log(date)
-  
+  let today = new Date();
+
+  let date =
+    today.getMonth() +
+    1 +
+    "/" +
+    today.getDate() +
+    "/" +
+    today.getFullYear() +
+    ", " +
+    today.getHours() +
+    ":" +
+    today.getMinutes();
+  console.log(date);
+
   const [viewport, setViewport] = useState({
     latitude: 39.381266,
     longitude: -97.922211,
@@ -85,46 +88,54 @@ function ReactMap() {
 
           dispatch(handleStateChange(state[0]));
           console.log(state[0]);
-          //the same thing with the above code
-          // dispatch({
-          //     type: "CHANGE_LOCATION",
-          //     currentLocation: state[0]
-          // })
         }
-
-        // data.forEach(state=>console.log(state.death, state.recovered, state.positive, state.negative))
       });
   }, [selectedState]);
 
   let REACT_APP_MAPBOX_TOKEN =
     "pk.eyJ1IjoibWVsa2lsaWMiLCJhIjoiY2tiZHZxNjVpMGZ6MjJ6bXVnYWZxbnEzOSJ9.IP_IrNqwNLG6yar2f9d6Qw";
 
-    useEffect(()=>{
-      setTimeout(() => {
-        setMapLoading(false)
-      }, 2000);
-     },[])
+  useEffect(() => {
+    setTimeout(() => {
+      setMapLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <div>
       <Navbar />
-      <div style={{width: "100vw",height:"100vh", position:"fixed", display: mapLoading ? "block" : "none", top:0, left:0, backgroundColor:"black", color: "white", zIndex: 100}}> Loading... </div>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          display: mapLoading ? "block" : "none",
+          top: 0,
+          left: 0,
+          backgroundColor: "black",
+          color: "white",
+          zIndex: 100,
+        }}
+      >
+        {" "}
+        Loading...{" "}
+      </div>
       <div className="table">
-        <h1 className="tabledata">Total Confirmed:  </h1>
-          <h1 className="tabledata">{total.confirmed}</h1>
-          <br/>
-          <br/>
-          <br/>
+        <h1 className="tabledata">Total Confirmed: </h1>
+        <h1 className="tabledata">{total.confirmed}</h1>
+        <br />
+        <br />
+        <br />
         <h1 className="tabledata">Recovered: </h1>
         <h1 className="tabledata">{total.recovered}</h1>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
         <h1 className="tabledata">Total Deaths:</h1>
         <h1 className="tabledata"> {total.death}</h1>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
         <h1 className="tabledata">Last Updated At</h1>
         <h1 className="tabledata">(M/DD/YYYY):</h1>
         <h1 className="tabledata">{date}</h1>
@@ -151,11 +162,9 @@ function ReactMap() {
                 e.preventDefault();
                 setSelectedState(state);
               }}
->
-<img src="https://img.icons8.com/cotton/30/000000/place-marker.png"/>
+            >
+              <img src="https://img.icons8.com/cotton/30/000000/place-marker.png" />
             </button>
-
-            {/* <Icon style={{ color: green[500] }} className="far fa-viruses"/> */}
           </Marker>
         ))}
         {selectedState ? (
@@ -197,7 +206,6 @@ function ReactMap() {
           </Popup>
         ) : null}
       </ReactMapGL>
-      
     </div>
   );
 }

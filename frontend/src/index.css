@@ -18,7 +18,6 @@ body {
   .App {
     width: 100%;
     height: 100%;
-    /* margin-top: 90px; */
   }
   .tabledata {
     position: relative;
@@ -55,15 +54,12 @@ body {
     background-color: rgb(201,173,131);
     z-index: 10;
     height:300px;
-    /* text-align: center; */
-    /* margin: 0;
-    padding: 0; */
   }
 
   #loginpage{
     width: 100%;
     height: 100%;
-    background-image: url('./new.png');
+    background-image: url('./covidpic.png');
   }
   
 
@@ -98,7 +94,6 @@ body {
     width: 100%;
     height: 100px;
     color: #becde6;
-    /* background-image: url('image0.png'); */
   }
 
 
@@ -108,37 +103,19 @@ body {
     width: 100%;
     height: 100px;
     color: #becde6;
-    /* background-image: url('image0.png'); */
   }
 
 
   .pie{
     
-    /* padding: 0px; */
     height: 500px;
      width: 1300px;
      align-items: center;
      margin:auto;
-     /* margin-right: auto; */
      margin-top: 20px;
-     /* margin-left: auto; */
-    /* margin-right: auto; */
-    /* margin: 0 auto; */
     color:#ffffff;
   
   }
-
-  /* .pie{
-    height: 500px;
-     width: 1600px;
-  } */
-/* 
-  .current{
-    text-align:"center";
-     margin-top:0;
-     margin-left: 'auto';
-    margin-right: 'auto';
-  } */
 
   #info {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -176,12 +153,9 @@ body {
 
   #states {
     color: white;
-    /* text-align:center; */
     margin-top: 30px;
     font-size: 60px;
     width:50%;
     margin-left: 0
-   
-    /* margin-left: auto;
-   margin-right: auto;  */
+  
   }

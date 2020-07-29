@@ -1,18 +1,15 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import Plot from "react-plotly.js";
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import Navbar from "./Navbar";
-import {Link} from 'react-router-dom'
-import Button from '@material-ui/core/Button'
 import { Jumbotron, Container } from "react-bootstrap";
+
 export default function UsDaily() {
   const [chartData, setChartData] = useState({});
   const [death, setDeath] = useState([]);
   const [date, setDate] = useState([]);
   const [positive, setPositive] = useState([]);
-  
 
   const chart = () => {
     let deathArr = [];
@@ -20,8 +17,8 @@ export default function UsDaily() {
     let positiveArr = [];
 
     let totalTestResults = [];
-    let deathColor= "#646d5a"
-    let positiveColor="#859d87"
+    let deathColor = "#646d5a";
+    let positiveColor = "#859d87";
 
     fetch("https:covidtracking.com/api/us/daily")
       .then((res) => res.json())
@@ -30,28 +27,25 @@ export default function UsDaily() {
           console.log(element);
           let deathCount =
             element.death === null ? (element.death = 0) : element.death;
-  
+
           deathArr.push(deathCount);
           dateArr.push(element.date);
           positiveArr.push(element.positive);
-    
-          totalTestResults.push(element.totalTestResults);
 
+          totalTestResults.push(element.totalTestResults);
         });
 
         dateArr.reverse();
         deathArr.reverse();
         positiveArr.reverse();
         totalTestResults.reverse();
-        // console.log(totalTestResults);
-        
-        dateArr= dateArr.map(r=>{
-        let year= r.toString().slice(0,4)
-        let month= r.toString().slice(4,6)
-        let day= r.toString().slice(6,8)
-        return `${month}/${day}/${year}`
-        })
-      
+
+        dateArr = dateArr.map((r) => {
+          let year = r.toString().slice(0, 4);
+          let month = r.toString().slice(4, 6);
+          let day = r.toString().slice(6, 8);
+          return `${month}/${day}/${year}`;
+        });
 
         setDeath({
           labels: dateArr,
@@ -80,7 +74,7 @@ export default function UsDaily() {
     chart();
   }, []);
 
-  let divStyle={ display: "block", height: "300px", width: "1425px" }
+  let divStyle = { display: "block", height: "300px", width: "1425px" };
   return (
     <div className="chart">
       <Navbar />
@@ -94,12 +88,11 @@ export default function UsDaily() {
               text: "Mortality Rate",
               display: true,
               fontSize: 25,
-              fontColor: '#e6e8eb'
+              fontColor: "#e6e8eb",
             },
             legend: {
               display: true,
               position: "right",
-             
             },
             scales: {
               yAxes: [
@@ -108,7 +101,7 @@ export default function UsDaily() {
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
-                    fontColor: "white"
+                    fontColor: "white",
                   },
                   gridLines: {
                     display: false,
@@ -116,13 +109,12 @@ export default function UsDaily() {
                 },
               ],
               xAxes: [
-                { 
-                  ticks:{
-                    fontColor: "white"
+                {
+                  ticks: {
+                    fontColor: "white",
                   },
                   gridLines: {
                     display: false,
-                    
                   },
                 },
               ],
@@ -130,9 +122,9 @@ export default function UsDaily() {
           }}
         />
       </div>
-    
-    <br></br>
-    <br></br>
+
+      <br></br>
+      <br></br>
       <div style={divStyle}>
         <Line
           data={positive}
@@ -143,7 +135,7 @@ export default function UsDaily() {
               text: "Confirmed Cases & Total Test Results",
               display: true,
               fontSize: 25,
-              fontColor: '#e6e8eb'
+              fontColor: "#e6e8eb",
             },
             legend: {
               display: true,
@@ -153,7 +145,7 @@ export default function UsDaily() {
               yAxes: [
                 {
                   ticks: {
-                      fontColor: "white",
+                    fontColor: "white",
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
@@ -165,8 +157,8 @@ export default function UsDaily() {
               ],
               xAxes: [
                 {
-                  ticks:{
-                    fontColor: "white"
+                  ticks: {
+                    fontColor: "white",
                   },
                   gridLines: {
                     display: false,
