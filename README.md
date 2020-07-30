@@ -11,10 +11,23 @@ Covid TrackR is a real-time tracking app that allows you to display the overall 
 * You have a **Windows/Linux/Mac** machine.
 
 ### Please make sure you do these steps to fire up the app:
+cd into the backend folder
+
+**In the backend folder:**
+
+Run:
+```bash 
+rails s
+```
+cd into the backend folder.
+
+**In the frontend folder:**
+
+Run:
 ```bash
 npm install
 ```
-
+Then, run:
 ```bash
 npm start
 ```
