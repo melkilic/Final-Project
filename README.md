@@ -1,3 +1,4 @@
+
 ![COVID TrackR](./frontend/readme.png)
 # Covid-TrackR
 Covid TrackR is a real-time tracking app that allows you to display the overall COVID-19 information in the U.S, detailed information about the states, and view the hospital information based on the location you type.
@@ -14,6 +15,7 @@ Covid TrackR is a real-time tracking app that allows you to display the overall 
 
 * You have a **Windows/Linux/Mac** machine.
 
+
 #### Please make sure you do these steps to fire up the app:
 ```bash
 cd into the backend folder
@@ -25,9 +27,11 @@ Run:
 rails s
 ```
 
+
 ```bash
 cd into the frontend folder
 ```
+
 **In the frontend folder:**
 
 Run:
