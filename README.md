@@ -1,9 +1,10 @@
 
-![COVID TrackR](./frontend/readme.png)
-# Covid TrackR
+![COVID TrackR](./frontend/src/gif.gif)
+# <center> Covid TrackR()
 >Covid TrackR is a real-time tracking app that allows you to display the overall COVID-19 information in the U.S, detailed information about the states, and view the hospital information based on the location you type.
 
-[Demo](https://www.youtube.com/watch?v=7Sklsae1jFA&t=10s)
+#### Check out the demo [here.](https://www.youtube.com/watch?v=7Sklsae1jFA&t=10s)
+
 ## Table of Contents
 1. [Build With](#build-with)
     * [Prerequisites](#prerequisites)
@@ -43,10 +44,13 @@ bundle install
 ```bash 
 rails s
 ```
+
 **Open a new terminal**
 ```bash
 cd into the frontend folder
 ```
+
+
 **In the frontend folder, install the NPM packages by running:**
 ```bash
 npm install
@@ -55,9 +59,11 @@ Then, fire up the frontend server:
 ```bash
 npm start
 ```
-
+Ensure your frontend server is running at http://localhost:3000/
 ## Usage
-To login/sign up, you can either use **Ettie** for the username, and **123** for the password (*this is one of the users that already exists in the database*) or sign up.
+To log in/sign up, you can either use **Ettie** for the username and **123** for the password (*this is one of the users that already exists in the database*) or sign up.
+Once you do that, you'll be able to access all the data in the app.
+
 ## API Reference
 **APIs that I have used in this project:**
 
