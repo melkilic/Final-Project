@@ -1,6 +1,6 @@
 
 ![COVID TrackR](./frontend/src/gif.gif)
-# <center> Covid TrackR()
+# <center> Covid TrackR
 >Covid TrackR is a real-time tracking app that allows you to display the overall COVID-19 information in the U.S, detailed information about the states, and view the hospital information based on the location you type.
 
 #### Check out the demo [here.](https://www.youtube.com/watch?v=7Sklsae1jFA&t=10s)
@@ -23,11 +23,11 @@
 ## Getting Started
 ### Prerequisites
 
-*Before you begin*
+*Before you begin ensure:*
 
-* Ensure you have installed the latest version of **React**.<br>([Environment Setup](https://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm))
+* You have installed the latest version of **React**.<br>([Environment Setup](https://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm))
 
-* You have a **Mac** machine.<br>(*instructions about Windows/Linux machines will come soon*)
+* You have a **Mac** machine.<br>(*instructions about Windows/Linux machines are coming come soon*)
 
 ### Installation
 ```bash
@@ -62,7 +62,7 @@ npm start
 Ensure your frontend server is running at http://localhost:3000/
 ## Usage
 To log in/sign up, you can either use **Ettie** for the username and **123** for the password (*this is one of the users that already exists in the database*) or sign up.
-Once you do that, you'll be able to access all the data in the app.
+Once you do that, you'll be able to access all the data in the app. 
 
 ## API Reference
 **APIs that I have used in this project:**
