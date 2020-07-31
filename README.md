@@ -62,7 +62,7 @@ npm start
 Ensure your frontend server is running at http://localhost:3000/
 ## Usage
 To log in/sign up, you can either use **Ettie** for the username and **123** for the password (*this is one of the users that already exists in the database*) or sign up.
-Once you do that, you'll be able to access all the data in the app. 
+Once you do that, you'll be able to access all the data in the app. 🙆‍♀💻
 
 ## API Reference
 **APIs that I have used in this project:**
