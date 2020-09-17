@@ -94,37 +94,4 @@ export default function Location() {
   );
 }
 
-// export default function Hospitals() {
-//     let [features, setFeatures] = useState(null);
-//     let [geometry, setGeometry]= useState([])
-
-//     const getGeometry=()=>{
-//         fetch("https://opendata.arcgis.com/datasets/1044bb19da8d4dbfb6a96eb1b4ebf629_0.geojson")
-//         .then(response => {
-//           return response.json()
-//         })
-//         .then(text => {
-//             // console.log(text.features)
-//        let features= text.features
-//       features.forEach(f=>
-//           setGeometry(f.geometry)
-//           )
-//           console.log(features.properties)
-//       //geometry(the hook) is a hash including coordinates which is an array of two elements(long,lat)
-//     }
-
-//         )
-
-//     }
-//     useEffect(()=>{
-//         getGeometry();
-
-//       },{})
-
-//    return(
-//        <div>
-//            hi
-//        </div>
-//    )
-
-// }
+ 

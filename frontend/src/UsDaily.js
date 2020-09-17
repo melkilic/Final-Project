@@ -1,207 +1,179 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import Plot from "react-plotly.js";
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import Navbar from "./Navbar";
-
+import { Jumbotron, Container } from "react-bootstrap";
 
 export default function UsDaily() {
   const [chartData, setChartData] = useState({});
   const [death, setDeath] = useState([]);
   const [date, setDate] = useState([]);
-  const [positive,setPositive]= useState([])
-  const [negative,setNegative]=useState([])
+  const [positive, setPositive] = useState([]);
 
   const chart = () => {
     let deathArr = [];
     let dateArr = [];
-    let positiveArr=[];
-    let negativeArr=[];
-    let totalTestResults=[]
-    let colorArr=["rgba(47,79,79)"];
+    let positiveArr = [];
+
+    let totalTestResults = [];
+    let deathColor = "#646d5a";
+    let positiveColor = "#859d87";
+
     fetch("https:covidtracking.com/api/us/daily")
       .then((res) => res.json())
       .then((r) => {
         r.forEach((element) => {
-          console.log(element.totalTestResults);
-          let deathCount = element.death === null ? (element.death = 0) : element.death;
-          let negativeCases= element.negative ===null ? (element.negative=0) : element.negative;
+          console.log(element);
+          let deathCount =
+            element.death === null ? (element.death = 0) : element.death;
+
           deathArr.push(deathCount);
           dateArr.push(element.date);
-          positiveArr.push(element.positive)
-          negativeArr.push(negativeCases)
-          totalTestResults.push(element.totalTestResults)
-          colorArr.push(dateArr)
-        });
-        dateArr.reverse()
-        deathArr.reverse()
-        positiveArr.reverse()
-        negativeArr.reverse()
-        totalTestResults.reverse()
-        console.log(totalTestResults)
-        setDeath({
-            labels: dateArr,
-            datasets: [
-              {
-                label: "death",
-                data: deathArr,
-                backgroundColor: colorArr
-              }
-            ],
-          });
-          setPositive({
-            labels: totalTestResults,
-            datasets: [
-              {
-                label: "positive",
-                data: positiveArr,
-                backgroundColor: colorArr
-              }
-            ],
-          });
-          // setNegative({
-          //   labels: negativeArr,
-          //   datasets: [
-          //     {
-          //       label: "negative",
-          //       data: positiveArr,
-          //       backgroundColor: colorArr
-          //     }
-          //   ],
-          // });
+          positiveArr.push(element.positive);
 
+          totalTestResults.push(element.totalTestResults);
+        });
+
+        dateArr.reverse();
+        deathArr.reverse();
+        positiveArr.reverse();
+        totalTestResults.reverse();
+
+        dateArr = dateArr.map((r) => {
+          let year = r.toString().slice(0, 4);
+          let month = r.toString().slice(4, 6);
+          let day = r.toString().slice(6, 8);
+          return `${month}/${day}/${year}`;
+        });
+
+        setDeath({
+          labels: dateArr,
+          datasets: [
+            {
+              label: "death",
+              data: deathArr,
+              backgroundColor: deathColor,
+            },
+          ],
+        });
+        setPositive({
+          labels: totalTestResults,
+          datasets: [
+            {
+              label: "confirmed",
+              data: positiveArr,
+              backgroundColor: positiveColor,
+            },
+          ],
+        });
       });
-      
   };
-  
 
   useEffect(() => {
     chart();
   }, []);
 
+  let divStyle = { display: "block", height: "300px", width: "1425px" };
   return (
-      
-    <div className="chart" >
-       <Navbar/>
-       <div style={{display: 'block', height: '300px', width: '1600px' }}>
-      <Bar 
-        data={death}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          title: { 
-              text: "COVID-19 Death-Date Ratio", 
+    <div className="chart">
+      <Navbar />
+      <div style={divStyle}>
+        <Bar
+          data={death}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+              text: "Mortality Rate",
               display: true,
-              fontSize: 25 
+              fontSize: 25,
+              fontColor: "#e6e8eb",
             },
-          legend: {
-            display: true,
-            position: "right",
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 10,
-                  beginAtZero: true,
-                },
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
-        }}
-      /> 
-</div>
-<div style={{display: 'block', height: '300px', width: '1600px' }}>
-       <Line
-        data={positive}
-        options={{
-          responsive: true,
-           maintainAspectRatio: false,
-          title: { 
-              text: "Positive Test vs Total Test Results", 
+            legend: {
               display: true,
-              fontSize: 25 
-             },
-          legend: {
-            display: true,
-            position: "right",
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 10,
-                  beginAtZero: true,
-                },
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
-        }}
-      />
-</div>
- <div style={{display: 'block', height: '300px', width: '1113px' }}>
-     <Pie
-        data={chartData}
-        options={{
-          responsive: true,
-           maintainAspectRatio: false,
-          title: { 
-              text: "Another one", 
-              display: true,
-              fontSize: 25 
+              position: "right",
             },
-          legend: {
-            display: true,
-            position: "right",
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 10,
-                  beginAtZero: true,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                    beginAtZero: true,
+                    fontColor: "white",
+                  },
+                  gridLines: {
+                    display: false,
+                  },
                 },
-                gridLines: {
-                  display: false,
+              ],
+              xAxes: [
+                {
+                  ticks: {
+                    fontColor: "white",
+                  },
+                  gridLines: {
+                    display: false,
+                  },
                 },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-          },
-        }}
-      />  
+              ],
+            },
+          }}
+        />
       </div>
+
+      <br></br>
+      <br></br>
+      <div style={divStyle}>
+        <Line
+          data={positive}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+              text: "Confirmed Cases & Total Test Results",
+              display: true,
+              fontSize: 25,
+              fontColor: "#e6e8eb",
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    fontColor: "white",
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                },
+              ],
+              xAxes: [
+                {
+                  ticks: {
+                    fontColor: "white",
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                },
+              ],
+            },
+          }}
+        />
+      </div>
+      <Jumbotron fluid className="jumbotron">
+        <Container>
+          <p>The Covid Tracking Project API has been used on this page.</p>
+        </Container>
+      </Jumbotron>
     </div>
   );
 }
-
